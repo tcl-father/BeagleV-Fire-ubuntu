@@ -1,0 +1,6 @@
+deploy/images/
+deploy/input/
+deploy/hss-payload-generator
+mirror/
+riscv-toolchain/
+hart-software-services/
