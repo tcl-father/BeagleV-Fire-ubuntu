@@ -1,0 +1,32 @@
+From 01d9d0ce7fc7f4c7adc8ec878d0be69ab23bcf9e Mon Sep 17 00:00:00 2001
+From: vauban353 <vauban353@gmail.com>
+Date: Sun, 16 Apr 2023 11:19:34 +0100
+Subject: [PATCH] Use MMUART0 for stdout.
+
+---
+ arch/riscv/dts/microchip-mpfs-icicle-kit.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/riscv/dts/microchip-mpfs-icicle-kit.dts b/arch/riscv/dts/microchip-mpfs-icicle-kit.dts
+index 09722a02a4..d6535df577 100644
+--- a/arch/riscv/dts/microchip-mpfs-icicle-kit.dts
++++ b/arch/riscv/dts/microchip-mpfs-icicle-kit.dts
+@@ -17,13 +17,13 @@
+ 		     "microchip,mpfs";
+ 
+ 	aliases {
+-		serial1 = &uart1;
++		serial0 = &uart0;
+ 		ethernet0 = &mac1;
+ 		spi0 = &qspi;
+ 	};
+ 
+ 	chosen {
+-		stdout-path = "serial1";
++		stdout-path = "serial0";
+ 	};
+ 
+ 	cpus {
+-- 
+2.25.1
+

@@ -6,3 +6,4 @@ deploy/u-boot.bin
 mirror/
 riscv-toolchain/
 hart-software-services/
+u-boot/
