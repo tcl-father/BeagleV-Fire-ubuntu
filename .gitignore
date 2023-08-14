@@ -1,6 +1,8 @@
 deploy/images/
 deploy/input/
 deploy/hss-payload-generator
+deploy/src.bin
+deploy/u-boot.bin
 mirror/
 riscv-toolchain/
 hart-software-services/
