@@ -22,6 +22,15 @@ cp -v ../patches/linux/Makefile arch/riscv/boot/dts/microchip/
 make ARCH=riscv CROSS_COMPILE=${CC} clean
 make ARCH=riscv CROSS_COMPILE=${CC} mpfs_defconfig
 
+#
+# Scheduler features
+#
+# end of Scheduler features
+
+./scripts/config --enable CONFIG_MEMCG
+./scripts/config --enable CONFIG_MEMCG_KMEM
+./scripts/config --enable CONFIG_CGROUP_HUGETLB
+
 ./scripts/config --set-str CONFIG_CMDLINE ""
 ./scripts/config --disable CONFIG_CMDLINE_FALLBACK
 ./scripts/config --enable CONFIG_EEPROM_AT24
@@ -29,6 +38,57 @@ make ARCH=riscv CROSS_COMPILE=${CC} mpfs_defconfig
 ./scripts/config --enable CONFIG_GPIO_MICROCHIP_CORE
 ./scripts/config --enable CONFIG_MCP356X
 ./scripts/config --enable CONFIG_POLARFIRE_SOC_GENERIC_SERVICE
+
+#
+# Networking options
+#
+./scripts/config --disable CONFIG_NETLABEL
+
+#
+# File systems
+#
+./scripts/config --enable CONFIG_EXT4_FS_SECURITY
+./scripts/config --disable CONFIG_FANOTIFY
+./scripts/config --enable CONFIG_AUTOFS_FS
+
+#
+# DOS/FAT/EXFAT/NT Filesystems
+#
+./scripts/config --enable CONFIG_FAT_FS
+./scripts/config --enable CONFIG_MSDOS_FS
+./scripts/config --enable CONFIG_VFAT_FS
+
+#
+# Pseudo filesystems
+#
+./scripts/config --enable CONFIG_PROC_CHILDREN
+./scripts/config --enable CONFIG_HUGETLBFS
+./scripts/config --enable CONFIG_NLS_CODEPAGE_437
+
+#
+# Security options
+#
+./scripts/config --enable CONFIG_SECURITY
+./scripts/config --enable CONFIG_SECURITYFS
+./scripts/config --enable CONFIG_SECURITY_NETWORK
+./scripts/config --enable CONFIG_SECURITY_PATH
+./scripts/config --set-val CONFIG_LSM_MMAP_MIN_ADDR 65536
+
+./scripts/config --disable CONFIG_SECURITY_SELINUX
+./scripts/config --disable CONFIG_SECURITY_SMACK
+./scripts/config --disable CONFIG_SECURITY_TOMOYO
+./scripts/config --disable CONFIG_SECURITY_APPARMOR
+./scripts/config --disable CONFIG_SECURITY_LOADPIN
+./scripts/config --disable CONFIG_SECURITY_YAMA
+./scripts/config --disable CONFIG_SECURITY_SAFESETID
+./scripts/config --disable CONFIG_SECURITY_LOCKDOWN_LSM
+./scripts/config --disable CONFIG_SECURITY_LANDLOCK
+
+./scripts/config --enable CONFIG_INTEGRITY
+./scripts/config --disable CONFIG_INTEGRITY_SIGNATURE
+
+./scripts/config --disable CONFIG_IMA
+./scripts/config --disable CONFIG_EVM
 
 echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} Image modules dtbs"
 make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} Image modules dtbs
@@ -61,3 +121,4 @@ cp -v ./arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dtb ../deploy/input/
 
 cd ../
 
+#
