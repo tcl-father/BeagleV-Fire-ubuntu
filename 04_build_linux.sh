@@ -22,6 +22,8 @@ cp -v ../patches/linux/Makefile arch/riscv/boot/dts/microchip/
 make ARCH=riscv CROSS_COMPILE=${CC} clean
 make ARCH=riscv CROSS_COMPILE=${CC} mpfs_defconfig
 
+./scripts/config --set-str CONFIG_CMDLINE ""
+./scripts/config --disable CONFIG_CMDLINE_FALLBACK
 ./scripts/config --enable CONFIG_EEPROM_AT24
 ./scripts/config --enable CONFIG_OF_OVERLAY
 ./scripts/config --enable CONFIG_GPIO_MICROCHIP_CORE

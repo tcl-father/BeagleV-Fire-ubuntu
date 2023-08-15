@@ -38,7 +38,7 @@ sync
 mkdir -p ./deploy/input/ || true
 echo "label Linux eMMC" > ./deploy/input/extlinux.conf
 echo "    kernel /Image" >> ./deploy/input/extlinux.conf
-echo "    append root=/dev/mmcblk1p3 ro rootfstype=ext4 rootwait console=ttyS0,115200 net.ifnames=0" >> ./deploy/input/extlinux.conf
+echo "    append root=/dev/mmcblk1p3 ro rootfstype=ext4 rootwait console=ttyS0,115200 earlycon uio_pdrv_genirq.of_id=generic-uio net.ifnames=0" >> ./deploy/input/extlinux.conf
 echo "    fdtdir /" >> ./deploy/input/extlinux.conf
 echo "    fdt /mpfs-beaglev-fire.dtb" >> ./deploy/input/extlinux.conf
 echo "    #fdtoverlays /overlays/<file>.dtbo" >> ./deploy/input/extlinux.conf
