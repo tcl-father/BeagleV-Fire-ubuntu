@@ -28,9 +28,11 @@ build:
     - ./07_create_sdcard_img.sh
     - xz -vT8 deploy/images/sdcard.img
     - tree -s deploy/
-    - cp deploy/images/sdcard.img.xz  ./
+    - cp deploy/images/sdcard.img.xz ./
+    - cp deploy/images/sdcard.bmap ./
   artifacts:
     expire_in: 14 days
     name: "$CI_PROJECT_NAME-$CI_JOB_ID"
     paths:
       - "sdcard.img.xz"
+      - "sdcard.bmap"
