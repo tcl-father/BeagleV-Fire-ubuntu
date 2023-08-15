@@ -105,24 +105,40 @@ if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
 	./scripts/config --enable CONFIG_SECURITY_PATH
 	./scripts/config --set-val CONFIG_LSM_MMAP_MIN_ADDR 65536
 
-	./scripts/config --disable CONFIG_SECURITY_SELINUX
-	./scripts/config --disable CONFIG_SECURITY_SMACK
-	./scripts/config --disable CONFIG_SECURITY_TOMOYO
-	./scripts/config --disable CONFIG_SECURITY_APPARMOR
-	./scripts/config --disable CONFIG_SECURITY_LOADPIN
-	./scripts/config --disable CONFIG_SECURITY_YAMA
-	./scripts/config --disable CONFIG_SECURITY_SAFESETID
-	./scripts/config --disable CONFIG_SECURITY_LOCKDOWN_LSM
-	./scripts/config --disable CONFIG_SECURITY_LANDLOCK
-
 	./scripts/config --enable CONFIG_INTEGRITY
-	./scripts/config --disable CONFIG_INTEGRITY_SIGNATURE
-
-	./scripts/config --disable CONFIG_IMA
-	./scripts/config --disable CONFIG_EVM
 
 	#./scripts/config --disable CONFIG_VMAP_STACK
 	#./scripts/config --disable CONFIG_SMP
+
+	./scripts/config --enable CONFIG_USB_MUSB_DUAL_ROLE
+
+	./scripts/config --enable CONFIG_USB_GADGET
+	./scripts/config --enable CONFIG_USB_CONFIGFS
+	./scripts/config --enable CONFIG_CONFIGFS_FS
+	./scripts/config --enable CONFIG_USB_CONFIGFS_SERIAL
+	./scripts/config --enable CONFIG_USB_CONFIGFS_ACM
+	./scripts/config --enable CONFIG_USB_CONFIGFS_OBEX
+	./scripts/config --enable CONFIG_USB_CONFIGFS_NCM
+	./scripts/config --enable CONFIG_USB_CONFIGFS_ECM
+	./scripts/config --enable CONFIG_USB_CONFIGFS_ECM_SUBSET
+	./scripts/config --enable CONFIG_USB_CONFIGFS_RNDIS
+	./scripts/config --enable CONFIG_USB_CONFIGFS_EEM
+	./scripts/config --enable CONFIG_USB_CONFIGFS_PHONET
+	./scripts/config --enable CONFIG_USB_CONFIGFS_MASS_STORAGE
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_LB_SS
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_FS
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_UAC1
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_UAC2
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_MIDI
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_HID
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_UVC
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_PRINTER
+
+	./scripts/config --module CONFIG_MEDIA_SUPPORT
+	./scripts/config --enable CONFIG_MEDIA_SUPPORT_FILTER
+	./scripts/config --enable CONFIG_MEDIA_SUBDRV_AUTOSELECT
+	./scripts/config --enable CONFIG_MEDIA_CAMERA_SUPPORT
+	./scripts/config --module CONFIG_VIDEO_IMX219
 
 	#Optimize:
 	./scripts/config --enable CONFIG_IP_NF_IPTABLES
