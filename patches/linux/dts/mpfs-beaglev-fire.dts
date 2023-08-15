@@ -3,9 +3,9 @@
 
 /dts-v1/;
 
-#include <dt-bindings/gpio/gpio.h>
 #include "mpfs.dtsi"
 #include "mpfs-beaglev-fire-fabric.dtsi"
+#include <dt-bindings/gpio/gpio.h>
 
 /* Clock frequency (in Hz) of the rtcclk */
 #define RTCCLK_FREQ		1000000
@@ -25,6 +25,7 @@
 	};
 
 	aliases {
+		mmc0 = &mmc;
 		ethernet0 = &mac1;
 		serial0 = &mmuart0;
 		serial1 = &mmuart1;
@@ -113,14 +114,11 @@
 		regulator-max-microvolt = <1200000>;
 	};
 
-
 	imx219_clk: camera-clk {
 		compatible = "fixed-clock";
 		#clock-cells = <0>;
 		clock-frequency = <24000000>;
 	};
-
-
 };
 
 &gpio0 {
@@ -230,16 +228,14 @@
 			};
 		};
 	};
-
-
-
 };
 
 &mac0 {
 	dma-noncoherent;
-	status = "okay";
 	phy-mode = "sgmii";
 	phy-handle = <&phy0>;
+	status = "okay";
+
 	phy0: ethernet-phy@0 {
 		reg = <0>;
 	};
@@ -247,9 +243,10 @@
 
 &mac1 {
 	dma-noncoherent;
-	status = "okay";
 	phy-mode = "sgmii";
 	phy-handle = <&phy1>;
+	status = "okay";
+
 	phy1: ethernet-phy@0 {
 		reg = <0>;
 	};

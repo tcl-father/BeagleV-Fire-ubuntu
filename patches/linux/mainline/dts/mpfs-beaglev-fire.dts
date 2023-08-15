@@ -26,6 +26,7 @@
 	};
 
 	aliases {
+		mmc0 = &mmc;
 		ethernet0 = &mac1;
 		serial0 = &mmuart0;
 		serial1 = &mmuart1;
@@ -114,14 +115,11 @@
 		regulator-max-microvolt = <1200000>;
 	};
 
-
 	imx219_clk: camera-clk {
 		compatible = "fixed-clock";
 		#clock-cells = <0>;
 		clock-frequency = <24000000>;
 	};
-
-
 };
 
 &gpio0 {
