@@ -1,0 +1,50 @@
+#!/bin/bash
+
+CORES=$(getconf _NPROCESSORS_ONLN)
+wdir=`pwd`
+CC=${CC:-"${wdir}/riscv-toolchain/bin/riscv64-linux-"}
+
+cd ./linux/
+
+make ARCH=riscv CROSS_COMPILE=${CC} menuconfig
+
+echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} Image modules dtbs"
+make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} Image modules dtbs
+
+KERNEL_UTS=$(cat "${wdir}/linux/include/generated/utsrelease.h" | awk '{print $3}' | sed 's/\"//g' )
+
+if [ -d "${wdir}/deploy/tmp/" ] ; then
+	rm -rf "${wdir}/deploy/tmp/"
+fi
+mkdir -p "${wdir}/deploy/tmp/"
+
+make -s ARCH=riscv CROSS_COMPILE=${CC} modules_install INSTALL_MOD_PATH="${wdir}/deploy/tmp"
+
+if [ -f "${wdir}/deploy/${KERNEL_UTS}-modules.tar.gz" ] ; then
+	rm -rf "${wdir}/deploy/${KERNEL_UTS}-modules.tar.gz" || true
+fi
+echo "Compressing ${KERNEL_UTS}-modules.tar.gz..."
+echo "${KERNEL_UTS}" > "${wdir}/deploy/.modules"
+cd "${wdir}/deploy/tmp" || true
+tar --create --gzip --file "../${KERNEL_UTS}-modules.tar.gz" ./*
+cd "${wdir}/linux/" || exit
+rm -rf "${wdir}/deploy/tmp" || true
+
+if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
+	cp -v ./.config ../patches/linux/mpfs_defconfig
+	cp -v ./arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts ../patches/linux/dts/mpfs-beaglev-fire.dts
+	cp -v ./arch/riscv/boot/dts/microchip/mpfs-beaglev-fire-fabric.dtsi ../patches/linux/dts/mpfs-beaglev-fire-fabric.dtsi
+else
+	cp -v ./.config ../patches/linux/mainline/defconfig
+	cp -v ./arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts ../patches/linux/mainline/dts/mpfs-beaglev-fire.dts
+	cp -v ./arch/riscv/boot/dts/microchip/mpfs-beaglev-fire-fabric.dtsi ../patches/linux/mainline/dts/mpfs-beaglev-fire-fabric.dtsi
+fi
+if [ ! -d ../deploy/input/ ] ; then
+	mkdir -p ../deploy/input/ || true
+fi
+cp -v ./arch/riscv/boot/Image ../deploy/input/
+cp -v ./arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dtb ../deploy/input/
+
+cd ../
+
+#

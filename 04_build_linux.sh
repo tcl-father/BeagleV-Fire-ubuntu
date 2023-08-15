@@ -123,9 +123,16 @@ if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
 	#./scripts/config --disable CONFIG_SMP
 else
 	make ARCH=riscv CROSS_COMPILE=${CC} defconfig
-fi
 
-#make ARCH=riscv CROSS_COMPILE=${CC} menuconfig
+	#./scripts/config --enable 
+	./scripts/config --enable CONFIG_PCIE_MICROCHIP_HOST
+	./scripts/config --enable CONFIG_OF_OVERLAY
+	./scripts/config --enable CONFIG_I2C
+	./scripts/config --enable CONFIG_EEPROM_AT24
+	./scripts/config --enable CONFIG_I2C_MICROCHIP_CORE
+
+	make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig
+fi
 
 echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} Image modules dtbs"
 make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} Image modules dtbs
