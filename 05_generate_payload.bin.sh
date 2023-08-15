@@ -1,7 +1,36 @@
 #!/bin/bash
 
 cd ./deploy/
-./hss-payload-generator -c config.yaml -v ./input/payload.bin
-sha256sum ./input/payload.bin
+
+if [ -f ./src.bin ] ; then
+
+	if [ -f ./input/payload.bin ] ; then
+		rm -rf ./input/payload.bin || true
+	fi
+
+	tree -s ./input/
+
+	./hss-payload-generator -vv -c config.yaml ./input/payload.bin
+
+	unset test_var
+	test_var=$(strings ./u-boot.bin | grep 'U-Boot 20' | head -n1 || true)
+	if [ ! "x${test_var}" = "x" ] ; then
+		echo "[u-boot.bin: ${test_var}]"
+	fi
+
+	unset test_var
+	test_var=$(strings ./src.bin | grep 'U-Boot 20' | head -n1 || true)
+	if [ ! "x${test_var}" = "x" ] ; then
+		echo "[src.bin:    ${test_var}]"
+	fi
+
+	unset test_var
+	test_var=$(strings ./input/payload.bin | grep 'U-Boot 20' | head -n1 || true)
+	if [ ! "x${test_var}" = "x" ] ; then
+		echo "[payload.bin:${test_var}]"
+	fi
+
+	tree -s ./input/
+fi
 
 #
