@@ -29,6 +29,7 @@ else
 	cp -v ../patches/linux/mainline/dts/mpfs-beaglev-fire-fabric.dtsi arch/riscv/boot/dts/microchip/
 fi
 
+echo "make ARCH=riscv CROSS_COMPILE=${CC} clean"
 make ARCH=riscv CROSS_COMPILE=${CC} clean
 
 if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
@@ -129,7 +130,9 @@ else
 	make ARCH=riscv CROSS_COMPILE=${CC} defconfig
 
 	./scripts/config --enable CONFIG_PCIE_MICROCHIP_HOST
+
 	./scripts/config --enable CONFIG_OF_OVERLAY
+
 	./scripts/config --enable CONFIG_I2C
 	./scripts/config --enable CONFIG_EEPROM_AT24
 	./scripts/config --enable CONFIG_I2C_MICROCHIP_CORE
@@ -137,7 +140,21 @@ else
 	./scripts/config --enable CONFIG_SPI_MICROCHIP_CORE
 	./scripts/config --enable CONFIG_SPI_MICROCHIP_CORE_QSPI
 	./scripts/config --module CONFIG_SPI_SPIDEV
+
 	./scripts/config --enable CONFIG_GPIO_SYSFS
+
+	./scripts/config --enable CONFIG_HW_RANDOM_POLARFIRE_SOC
+
+	./scripts/config --enable CONFIG_USB_MUSB_POLARFIRE_SOC
+
+	./scripts/config --enable CONFIG_MAILBOX
+	./scripts/config --enable CONFIG_POLARFIRE_SOC_MAILBOX
+	./scripts/config --disable CONFIG_SUN6I_MSGBOX
+
+	./scripts/config --enable CONFIG_REMOTEPROC
+	./scripts/config --enable CONFIG_REMOTEPROC_CDEV
+
+	./scripts/config --enable CONFIG_POLARFIRE_SOC_SYS_CTRL
 
 	echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig"
 	make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig

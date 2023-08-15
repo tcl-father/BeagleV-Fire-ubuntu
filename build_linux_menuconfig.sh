@@ -29,118 +29,15 @@ else
 	cp -v ../patches/linux/mainline/dts/mpfs-beaglev-fire-fabric.dtsi arch/riscv/boot/dts/microchip/
 fi
 
+echo "make ARCH=riscv CROSS_COMPILE=${CC} clean"
 make ARCH=riscv CROSS_COMPILE=${CC} clean
 
 if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
 	echo "make ARCH=riscv CROSS_COMPILE=${CC} mpfs_defconfig"
 	make ARCH=riscv CROSS_COMPILE=${CC} mpfs_defconfig
-
-	#
-	# Scheduler features
-	#
-	# end of Scheduler features
-
-	./scripts/config --enable CONFIG_MEMCG
-	./scripts/config --enable CONFIG_MEMCG_KMEM
-	./scripts/config --enable CONFIG_RT_GROUP_SCHED
-	./scripts/config --enable CONFIG_SCHED_MM_CID
-	./scripts/config --enable CONFIG_CGROUP_PIDS
-	./scripts/config --enable CONFIG_CGROUP_FREEZER
-	./scripts/config --enable CONFIG_CGROUP_HUGETLB
-	./scripts/config --enable CONFIG_CPUSETS
-	./scripts/config --enable CONFIG_PROC_PID_CPUSET
-	./scripts/config --enable CONFIG_CGROUP_DEVICE
-	./scripts/config --enable CONFIG_CGROUP_CPUACCT
-	./scripts/config --enable CONFIG_CGROUP_PERF
-	./scripts/config --enable CONFIG_NAMESPACES
-	./scripts/config --enable CONFIG_UTS_NS
-	./scripts/config --enable CONFIG_TIME_NS
-	./scripts/config --enable CONFIG_IPC_NS
-	./scripts/config --enable CONFIG_USER_NS
-	./scripts/config --enable CONFIG_PID_NS
-	./scripts/config --enable CONFIG_NET_NS
-	./scripts/config --enable CONFIG_CHECKPOINT_RESTORE
-
-	./scripts/config --set-str CONFIG_CMDLINE ""
-	./scripts/config --disable CONFIG_CMDLINE_FALLBACK
-	./scripts/config --enable CONFIG_EEPROM_AT24
-	./scripts/config --enable CONFIG_OF_OVERLAY
-	./scripts/config --enable CONFIG_GPIO_MICROCHIP_CORE
-	./scripts/config --enable CONFIG_MCP356X
-	./scripts/config --enable CONFIG_POLARFIRE_SOC_GENERIC_SERVICE
-
-	#
-	# Networking options
-	#
-	./scripts/config --disable CONFIG_NETLABEL
-
-	#
-	# File systems
-	#
-	./scripts/config --enable CONFIG_EXT4_FS_SECURITY
-	./scripts/config --disable CONFIG_FANOTIFY
-	./scripts/config --enable CONFIG_AUTOFS_FS
-
-	#
-	# DOS/FAT/EXFAT/NT Filesystems
-	#
-	./scripts/config --enable CONFIG_FAT_FS
-	./scripts/config --enable CONFIG_MSDOS_FS
-	./scripts/config --enable CONFIG_VFAT_FS
-
-	#
-	# Pseudo filesystems
-	#
-	./scripts/config --enable CONFIG_PROC_CHILDREN
-	./scripts/config --enable CONFIG_HUGETLBFS
-	./scripts/config --enable CONFIG_NLS_CODEPAGE_437
-
-	#
-	# Security options
-	#
-	./scripts/config --enable CONFIG_SECURITY
-	./scripts/config --enable CONFIG_SECURITYFS
-	./scripts/config --enable CONFIG_SECURITY_NETWORK
-	./scripts/config --enable CONFIG_SECURITY_PATH
-	./scripts/config --set-val CONFIG_LSM_MMAP_MIN_ADDR 65536
-
-	./scripts/config --disable CONFIG_SECURITY_SELINUX
-	./scripts/config --disable CONFIG_SECURITY_SMACK
-	./scripts/config --disable CONFIG_SECURITY_TOMOYO
-	./scripts/config --disable CONFIG_SECURITY_APPARMOR
-	./scripts/config --disable CONFIG_SECURITY_LOADPIN
-	./scripts/config --disable CONFIG_SECURITY_YAMA
-	./scripts/config --disable CONFIG_SECURITY_SAFESETID
-	./scripts/config --disable CONFIG_SECURITY_LOCKDOWN_LSM
-	./scripts/config --disable CONFIG_SECURITY_LANDLOCK
-
-	./scripts/config --enable CONFIG_INTEGRITY
-	./scripts/config --disable CONFIG_INTEGRITY_SIGNATURE
-
-	./scripts/config --disable CONFIG_IMA
-	./scripts/config --disable CONFIG_EVM
-
-	#./scripts/config --disable CONFIG_VMAP_STACK
-	#./scripts/config --disable CONFIG_SMP
-	echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig"
-	make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig
 else
 	echo "make ARCH=riscv CROSS_COMPILE=${CC} defconfig"
 	make ARCH=riscv CROSS_COMPILE=${CC} defconfig
-
-	./scripts/config --enable CONFIG_PCIE_MICROCHIP_HOST
-	./scripts/config --enable CONFIG_OF_OVERLAY
-	./scripts/config --enable CONFIG_I2C
-	./scripts/config --enable CONFIG_EEPROM_AT24
-	./scripts/config --enable CONFIG_I2C_MICROCHIP_CORE
-
-	./scripts/config --enable CONFIG_SPI_MICROCHIP_CORE
-	./scripts/config --enable CONFIG_SPI_MICROCHIP_CORE_QSPI
-	./scripts/config --module CONFIG_SPI_SPIDEV
-	./scripts/config --enable CONFIG_GPIO_SYSFS
-
-	echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig"
-	make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig
 fi
 
 echo "make ARCH=riscv CROSS_COMPILE=${CC} menuconfig"
