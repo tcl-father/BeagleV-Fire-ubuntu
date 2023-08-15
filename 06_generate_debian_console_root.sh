@@ -58,6 +58,8 @@ rm -rf ./ignore/.root/etc/systemd/system/getty.target.wants/serial-getty@ttyGS0.
 rm -rf ./ignore/.root/etc/systemd/network/usb0.network || true
 rm -rf ./ignore/.root/etc/systemd/network/usb1.network || true
 
+rm -rf ./ignore/.root/etc/systemd/system/multi-user.target.wants/wpa_supplicant@wlan0.service || true
+
 rm -rf ./ignore/.root/usr/lib/systemd/system/grow_partition.service || true
 cd ./ignore/.root/
 ln -L -f -s -v /lib/systemd/system/resize_filesystem.service --target-directory=./etc/systemd/system/multi-user.target.wants/

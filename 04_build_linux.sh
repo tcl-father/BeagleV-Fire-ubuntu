@@ -145,6 +145,8 @@ else
 
 	./scripts/config --enable CONFIG_HW_RANDOM_POLARFIRE_SOC
 
+	./scripts/config --enable CONFIG_USB_MUSB_HDRC
+	./scripts/config --enable CONFIG_NOP_USB_XCEIV
 	./scripts/config --enable CONFIG_USB_MUSB_POLARFIRE_SOC
 	./scripts/config --enable CONFIG_USB_MUSB_DUAL_ROLE
 
@@ -180,6 +182,7 @@ else
 	./scripts/config --enable CONFIG_USB_CONFIGFS_F_PRINTER
 
 	#Cleanup large DRM...
+	./scripts/config --disable CONFIG_DRM
 	./scripts/config --disable CONFIG_DRM_RADEON
 	./scripts/config --disable CONFIG_DRM_NOUVEAU
 	./scripts/config --disable CONFIG_DRM_SUN4I

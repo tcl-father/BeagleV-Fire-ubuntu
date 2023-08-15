@@ -35,9 +35,160 @@ make ARCH=riscv CROSS_COMPILE=${CC} clean
 if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
 	echo "make ARCH=riscv CROSS_COMPILE=${CC} mpfs_defconfig"
 	make ARCH=riscv CROSS_COMPILE=${CC} mpfs_defconfig
+
+	#
+	# Scheduler features
+	#
+	# end of Scheduler features
+
+	./scripts/config --enable CONFIG_MEMCG
+	./scripts/config --enable CONFIG_MEMCG_KMEM
+	./scripts/config --enable CONFIG_RT_GROUP_SCHED
+	./scripts/config --enable CONFIG_SCHED_MM_CID
+	./scripts/config --enable CONFIG_CGROUP_PIDS
+	./scripts/config --enable CONFIG_CGROUP_FREEZER
+	./scripts/config --enable CONFIG_CGROUP_HUGETLB
+	./scripts/config --enable CONFIG_CPUSETS
+	./scripts/config --enable CONFIG_PROC_PID_CPUSET
+	./scripts/config --enable CONFIG_CGROUP_DEVICE
+	./scripts/config --enable CONFIG_CGROUP_CPUACCT
+	./scripts/config --enable CONFIG_CGROUP_PERF
+	./scripts/config --enable CONFIG_NAMESPACES
+	./scripts/config --enable CONFIG_UTS_NS
+	./scripts/config --enable CONFIG_TIME_NS
+	./scripts/config --enable CONFIG_IPC_NS
+	./scripts/config --enable CONFIG_USER_NS
+	./scripts/config --enable CONFIG_PID_NS
+	./scripts/config --enable CONFIG_NET_NS
+	./scripts/config --enable CONFIG_CHECKPOINT_RESTORE
+
+	./scripts/config --set-str CONFIG_CMDLINE ""
+	./scripts/config --disable CONFIG_CMDLINE_FALLBACK
+	./scripts/config --enable CONFIG_EEPROM_AT24
+	./scripts/config --enable CONFIG_OF_OVERLAY
+	./scripts/config --enable CONFIG_GPIO_MICROCHIP_CORE
+	./scripts/config --enable CONFIG_MCP356X
+	./scripts/config --enable CONFIG_POLARFIRE_SOC_GENERIC_SERVICE
+
+	#
+	# Networking options
+	#
+	./scripts/config --disable CONFIG_NETLABEL
+
+	#
+	# File systems
+	#
+	./scripts/config --enable CONFIG_EXT4_FS_SECURITY
+	./scripts/config --disable CONFIG_FANOTIFY
+	./scripts/config --enable CONFIG_AUTOFS_FS
+
+	#
+	# DOS/FAT/EXFAT/NT Filesystems
+	#
+	./scripts/config --enable CONFIG_FAT_FS
+	./scripts/config --enable CONFIG_MSDOS_FS
+	./scripts/config --enable CONFIG_VFAT_FS
+
+	#
+	# Pseudo filesystems
+	#
+	./scripts/config --enable CONFIG_PROC_CHILDREN
+	./scripts/config --enable CONFIG_HUGETLBFS
+	./scripts/config --enable CONFIG_NLS_CODEPAGE_437
+
+	#
+	# Security options
+	#
+	./scripts/config --enable CONFIG_SECURITY
+	./scripts/config --enable CONFIG_SECURITYFS
+	./scripts/config --enable CONFIG_SECURITY_NETWORK
+	./scripts/config --enable CONFIG_SECURITY_PATH
+	./scripts/config --set-val CONFIG_LSM_MMAP_MIN_ADDR 65536
+
+	./scripts/config --disable CONFIG_SECURITY_SELINUX
+	./scripts/config --disable CONFIG_SECURITY_SMACK
+	./scripts/config --disable CONFIG_SECURITY_TOMOYO
+	./scripts/config --disable CONFIG_SECURITY_APPARMOR
+	./scripts/config --disable CONFIG_SECURITY_LOADPIN
+	./scripts/config --disable CONFIG_SECURITY_YAMA
+	./scripts/config --disable CONFIG_SECURITY_SAFESETID
+	./scripts/config --disable CONFIG_SECURITY_LOCKDOWN_LSM
+	./scripts/config --disable CONFIG_SECURITY_LANDLOCK
+
+	./scripts/config --enable CONFIG_INTEGRITY
+	./scripts/config --disable CONFIG_INTEGRITY_SIGNATURE
+
+	./scripts/config --disable CONFIG_IMA
+	./scripts/config --disable CONFIG_EVM
+
+	#./scripts/config --disable CONFIG_VMAP_STACK
+	#./scripts/config --disable CONFIG_SMP
+	echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig"
+	make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig
 else
 	echo "make ARCH=riscv CROSS_COMPILE=${CC} defconfig"
 	make ARCH=riscv CROSS_COMPILE=${CC} defconfig
+
+	./scripts/config --enable CONFIG_PCIE_MICROCHIP_HOST
+
+	./scripts/config --enable CONFIG_OF_OVERLAY
+
+	./scripts/config --enable CONFIG_I2C
+	./scripts/config --enable CONFIG_EEPROM_AT24
+	./scripts/config --enable CONFIG_I2C_MICROCHIP_CORE
+
+	./scripts/config --enable CONFIG_SPI_MICROCHIP_CORE
+	./scripts/config --enable CONFIG_SPI_MICROCHIP_CORE_QSPI
+	./scripts/config --module CONFIG_SPI_SPIDEV
+
+	./scripts/config --enable CONFIG_GPIO_SYSFS
+
+	./scripts/config --enable CONFIG_HW_RANDOM_POLARFIRE_SOC
+
+	./scripts/config --enable CONFIG_USB_MUSB_HDRC
+	./scripts/config --enable CONFIG_NOP_USB_XCEIV
+	./scripts/config --enable CONFIG_USB_MUSB_POLARFIRE_SOC
+	./scripts/config --enable CONFIG_USB_MUSB_DUAL_ROLE
+
+	./scripts/config --enable CONFIG_MAILBOX
+	./scripts/config --enable CONFIG_POLARFIRE_SOC_MAILBOX
+	./scripts/config --disable CONFIG_SUN6I_MSGBOX
+
+	./scripts/config --enable CONFIG_REMOTEPROC
+	./scripts/config --enable CONFIG_REMOTEPROC_CDEV
+
+	./scripts/config --enable CONFIG_POLARFIRE_SOC_SYS_CTRL
+
+	./scripts/config --enable CONFIG_USB_GADGET
+	./scripts/config --enable CONFIG_USB_CONFIGFS
+	./scripts/config --enable CONFIG_CONFIGFS_FS
+	./scripts/config --enable CONFIG_USB_CONFIGFS_SERIAL
+	./scripts/config --enable CONFIG_USB_CONFIGFS_ACM
+	./scripts/config --enable CONFIG_USB_CONFIGFS_OBEX
+	./scripts/config --enable CONFIG_USB_CONFIGFS_NCM
+	./scripts/config --enable CONFIG_USB_CONFIGFS_ECM
+	./scripts/config --enable CONFIG_USB_CONFIGFS_ECM_SUBSET
+	./scripts/config --enable CONFIG_USB_CONFIGFS_RNDIS
+	./scripts/config --enable CONFIG_USB_CONFIGFS_EEM
+	./scripts/config --enable CONFIG_USB_CONFIGFS_PHONET
+	./scripts/config --enable CONFIG_USB_CONFIGFS_MASS_STORAGE
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_LB_SS
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_FS
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_UAC1
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_UAC2
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_MIDI
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_HID
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_UVC
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_PRINTER
+
+	#Cleanup large DRM...
+	./scripts/config --disable CONFIG_DRM
+	./scripts/config --disable CONFIG_DRM_RADEON
+	./scripts/config --disable CONFIG_DRM_NOUVEAU
+	./scripts/config --disable CONFIG_DRM_SUN4I
+
+	echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig"
+	make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig
 fi
 
 echo "make ARCH=riscv CROSS_COMPILE=${CC} menuconfig"
