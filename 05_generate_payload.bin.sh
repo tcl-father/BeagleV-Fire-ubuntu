@@ -3,7 +3,7 @@
 cd ./deploy/
 
 if [ -f ./src.bin ] ; then
-
+	mkdir ./input/
 	tree -s ./
 
 	if [ -f ./input/payload.bin ] ; then
