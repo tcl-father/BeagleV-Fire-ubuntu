@@ -1,0 +1,14 @@
+image: robertcnelson/debian-bookworm-slim-riscv:latest
+
+cache:
+  key: "$CI_PROJECT_NAME"
+  paths:
+    - mirror/x86_64-gcc-*-linux.tar.xz
+    - deploy/*.tar.xz
+
+build:
+  tags:
+    - docker-amd64
+  stage: build
+  script:
+    - ./01_git_sync.sh

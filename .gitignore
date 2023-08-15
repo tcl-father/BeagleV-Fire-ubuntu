@@ -3,7 +3,11 @@ deploy/input/
 deploy/hss-payload-generator
 deploy/src.bin
 deploy/u-boot.bin
+deploy/.modules
+deploy/*-modules.tar.gz
+deploy/Image
 mirror/
 riscv-toolchain/
 hart-software-services/
 u-boot/
+linux/
