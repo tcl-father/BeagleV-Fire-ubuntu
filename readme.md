@@ -1,8 +1,58 @@
+# Building Microchip Linux tree
+
+```
+./01_git_sync.sh
+./02_build_hss.sh
+./03_build_u-boot.sh
+./04_build_linux.sh
+./05_generate_payload.bin.sh
+sudo ./06_generate_debian_console_root.sh
+sudo ./07_create_sdcard_img.sh
+```
+
+# Switching to Mainline Linux tree
+
+```
+./git_linux_mainline.sh
+```
+
+and rebuild:
+
+```
+./04_build_linux.sh
+./05_generate_payload.bin.sh
+sudo ./06_generate_debian_console_root.sh
+sudo ./07_create_sdcard_img.sh
+```
+
+# Switching to Microchip Linux tree
+
+```
+./git_linux_mpfs.sh
+```
+
+and rebuild:
+
+```
+./04_build_linux.sh
+./05_generate_payload.bin.sh
+sudo ./06_generate_debian_console_root.sh
+sudo ./07_create_sdcard_img.sh
+```
+
 # Programming
 
 ```
 >> mmc
 >> usbdmsc
+```
+
+# Flashing sdcard.img:
+
+Use Balena or:
+
+```
+sudo bmaptool copy sdcard.img /dev/sde
 ```
 
 # Notes
