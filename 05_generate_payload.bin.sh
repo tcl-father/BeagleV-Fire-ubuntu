@@ -4,13 +4,9 @@ cd ./deploy/
 
 if [ -f ./src.bin ] ; then
 	mkdir ./input/
-	tree -s ./
-
 	if [ -f ./input/payload.bin ] ; then
 		rm -rf ./input/payload.bin || true
 	fi
-
-	tree -s ./input/
 
 	./hss-payload-generator -vv -c config.yaml ./input/payload.bin
 
@@ -32,8 +28,6 @@ if [ -f ./src.bin ] ; then
 	if [ ! "x${test_var}" = "x" ] ; then
 		echo "[payload.bin:${test_var}]"
 	fi
-
-	tree -s ./input/
 fi
 
 #

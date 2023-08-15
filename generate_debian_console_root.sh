@@ -35,10 +35,21 @@ mkdir -p ./ignore/.root
 tar xfp ./deploy/debian-sid-console-riscv64-${datestamp}/riscv64-rootfs-*.tar -C ./ignore/.root
 sync
 
+mkdir -p ./deploy/input/ || true
+echo "label Linux eMMC" > ./deploy/input/extlinux.conf
+echo "    kernel /Image" >> ./deploy/input/extlinux.conf
+echo "    append root=/dev/mmcblk1p3 ro rootfstype=ext4 rootwait console=ttyS0,115200 net.ifnames=0" >> ./deploy/input/extlinux.conf
+echo "    fdtdir /" >> ./deploy/input/extlinux.conf
+echo "    fdt /mpfs-beaglev-fire.dtb" >> ./deploy/input/extlinux.conf
+echo "    #fdtoverlays /overlays/<file>.dtbo" >> ./deploy/input/extlinux.conf
+
+echo "extlinux/extlinux.conf"
+cat ./deploy/input/extlinux.conf
+
 mkdir -p ./ignore/.root/boot/firmware/ || true
 
-echo '/dev/mmcblk0p2  /boot/firmware/ auto  defaults  0  2' >> ./ignore/.root/etc/fstab
-echo '/dev/mmcblk0p3  /  auto  errors=remount-ro  0  1' >> ./ignore/.root/etc/fstab
+echo '/dev/mmcblk1p2  /boot/firmware/ auto  defaults  0  2' >> ./ignore/.root/etc/fstab
+echo '/dev/mmcblk1p3  /  auto  errors=remount-ro  0  1' >> ./ignore/.root/etc/fstab
 echo 'debugfs  /sys/kernel/debug  debugfs  mode=755,uid=root,gid=gpio,defaults  0  0' >> ./ignore/.root/etc/fstab
 
 rm -rf ./ignore/.root/usr/lib/systemd/system/bb-usb-gadgets.service || true

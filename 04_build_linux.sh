@@ -44,8 +44,11 @@ cd "${wdir}/linux/" || exit
 rm -rf "${wdir}/deploy/tmp" || true
 
 cp -v ./.config ../patches/linux/mpfs_defconfig
-cp -v ./arch/riscv/boot/Image ../deploy/
-cp -v ./arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dtb ../deploy/
+if [ ! -d ../deploy/input/ ] ; then
+	mkdir -p ../deploy/input/ || true
+fi
+cp -v ./arch/riscv/boot/Image ../deploy/input/
+cp -v ./arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dtb ../deploy/input/
 
 cd ../
 
