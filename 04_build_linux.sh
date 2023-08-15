@@ -146,6 +146,7 @@ else
 	./scripts/config --enable CONFIG_HW_RANDOM_POLARFIRE_SOC
 
 	./scripts/config --enable CONFIG_USB_MUSB_POLARFIRE_SOC
+	./scripts/config --enable CONFIG_USB_MUSB_DUAL_ROLE
 
 	./scripts/config --enable CONFIG_MAILBOX
 	./scripts/config --enable CONFIG_POLARFIRE_SOC_MAILBOX
@@ -155,6 +156,28 @@ else
 	./scripts/config --enable CONFIG_REMOTEPROC_CDEV
 
 	./scripts/config --enable CONFIG_POLARFIRE_SOC_SYS_CTRL
+
+	./scripts/config --enable CONFIG_USB_GADGET
+	./scripts/config --enable CONFIG_USB_CONFIGFS
+	./scripts/config --enable CONFIG_CONFIGFS_FS
+	./scripts/config --enable CONFIG_USB_CONFIGFS_SERIAL
+	./scripts/config --enable CONFIG_USB_CONFIGFS_ACM
+	./scripts/config --enable CONFIG_USB_CONFIGFS_OBEX
+	./scripts/config --enable CONFIG_USB_CONFIGFS_NCM
+	./scripts/config --enable CONFIG_USB_CONFIGFS_ECM
+	./scripts/config --enable CONFIG_USB_CONFIGFS_ECM_SUBSET
+	./scripts/config --enable CONFIG_USB_CONFIGFS_RNDIS
+	./scripts/config --enable CONFIG_USB_CONFIGFS_EEM
+	./scripts/config --enable CONFIG_USB_CONFIGFS_PHONET
+	./scripts/config --enable CONFIG_USB_CONFIGFS_MASS_STORAGE
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_LB_SS
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_FS
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_UAC1
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_UAC2
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_MIDI
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_HID
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_UVC
+	./scripts/config --enable CONFIG_USB_CONFIGFS_F_PRINTER
 
 	#Cleanup large DRM...
 	./scripts/config --disable CONFIG_DRM_RADEON
