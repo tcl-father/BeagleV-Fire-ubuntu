@@ -60,10 +60,10 @@ rm -rf ./ignore/.root/etc/systemd/network/usb1.network || true
 
 rm -rf ./ignore/.root/etc/systemd/system/multi-user.target.wants/wpa_supplicant@wlan0.service || true
 
-rm -rf ./ignore/.root/usr/lib/systemd/system/grow_partition.service || true
-cd ./ignore/.root/
-ln -L -f -s -v /lib/systemd/system/resize_filesystem.service --target-directory=./etc/systemd/system/multi-user.target.wants/
-cd ../../
+#rm -rf ./ignore/.root/usr/lib/systemd/system/grow_partition.service || true
+#cd ./ignore/.root/
+#ln -L -f -s -v /lib/systemd/system/resize_filesystem.service --target-directory=./etc/systemd/system/multi-user.target.wants/
+#cd ../../
 
 cp -v ./ignore/.root/etc/bbb.io/templates/eth0-DHCP.network ./ignore/.root/etc/systemd/network/eth0.network || true
 
@@ -82,7 +82,7 @@ echo 'File Size'
 du -sh ignore/.root/ || true
 echo '---------------------'
 
-dd if=/dev/zero of=./deploy/input/root.ext4 bs=1 count=0 seek=4000M
+dd if=/dev/zero of=./deploy/input/root.ext4 bs=1 count=0 seek=2048M
 mkfs.ext4 -F ./deploy/input/root.ext4 -d ./ignore/.root
 
 if [ -f ./.06_generate_root.sh ] ; then
