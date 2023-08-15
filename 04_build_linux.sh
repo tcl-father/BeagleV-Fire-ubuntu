@@ -22,9 +22,11 @@ cp -v ../patches/linux/Makefile arch/riscv/boot/dts/microchip/
 make ARCH=riscv CROSS_COMPILE=${CC} clean
 make ARCH=riscv CROSS_COMPILE=${CC} mpfs_defconfig
 
+./scripts/config --enable CONFIG_EEPROM_AT24
 ./scripts/config --enable CONFIG_OF_OVERLAY
 ./scripts/config --enable CONFIG_GPIO_MICROCHIP_CORE
 ./scripts/config --enable CONFIG_MCP356X
+./scripts/config --enable CONFIG_POLARFIRE_SOC_GENERIC_SERVICE
 
 echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} Image modules dtbs"
 make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} Image modules dtbs
