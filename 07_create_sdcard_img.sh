@@ -17,4 +17,8 @@ fi
 
 genimage --config genimage.cfg
 
+if [ -d ./tmp ] ; then
+	rm -rf ./tmp || true
+fi
+
 #

@@ -31,6 +31,11 @@ make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} Image modules dtbs
 
 KERNEL_UTS=$(cat "${wdir}/linux/include/generated/utsrelease.h" | awk '{print $3}' | sed 's/\"//g' )
 
+if [ -d "${wdir}/deploy/tmp/" ] ; then
+	rm -rf "${wdir}/deploy/tmp/"
+fi
+mkdir -p "${wdir}/deploy/tmp/"
+
 make -s ARCH=riscv CROSS_COMPILE=${CC} modules_install INSTALL_MOD_PATH="${wdir}/deploy/tmp"
 
 if [ -f "${wdir}/deploy/${KERNEL_UTS}-modules.tar.gz" ] ; then

@@ -3,7 +3,10 @@
 cd ./deploy/
 
 if [ -f ./src.bin ] ; then
-	mkdir ./input/
+	if [ ! -d ./input/ ] ; then
+		mkdir ./input/
+	fi
+
 	if [ -f ./input/payload.bin ] ; then
 		rm -rf ./input/payload.bin || true
 	fi
