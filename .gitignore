@@ -6,6 +6,7 @@ deploy/u-boot.bin
 deploy/.modules
 deploy/*-modules.tar.gz
 deploy/Image
+deploy/*.dtb
 mirror/
 riscv-toolchain/
 hart-software-services/
