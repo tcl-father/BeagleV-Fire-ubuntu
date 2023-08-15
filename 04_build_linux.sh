@@ -188,6 +188,14 @@ else
 	./scripts/config --enable CONFIG_USB_CONFIGFS_F_UVC
 	./scripts/config --enable CONFIG_USB_CONFIGFS_F_PRINTER
 
+	./scripts/config --module CONFIG_MEDIA_SUPPORT
+	./scripts/config --enable CONFIG_MEDIA_SUPPORT_FILTER
+	./scripts/config --enable CONFIG_MEDIA_SUBDRV_AUTOSELECT
+	./scripts/config --enable CONFIG_MEDIA_CAMERA_SUPPORT
+	./scripts/config --module CONFIG_VIDEO_IMX219
+
+	./scripts/config --module CONFIG_IIO
+
 	#Cleanup large DRM...
 	./scripts/config --disable CONFIG_DRM
 	./scripts/config --disable CONFIG_DRM_RADEON
