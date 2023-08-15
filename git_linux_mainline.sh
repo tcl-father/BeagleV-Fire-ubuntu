@@ -13,6 +13,13 @@ UBOOT_REPO="https://github.com/polarfire-soc/u-boot.git"
 LINUX_BRANCH="master"
 LINUX_REPO="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git"
 
+#Use custom device tree and Makefile in patches/linux directory...
+#LINUX_BRANCH="linux-6.4.y"
+#LINUX_BRANCH="linux-6.3.y"
+#LINUX_BRANCH="linux-6.2.y"
+#LINUX_BRANCH="linux-6.1.y"
+#LINUX_REPO="https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git"
+
 GIT_DEPTH="20"
 
 if [ ! -f ./mirror/x86_64-gcc-11.4.0-nolibc-riscv64-linux.tar.xz ] ; then
