@@ -156,6 +156,11 @@ else
 
 	./scripts/config --enable CONFIG_POLARFIRE_SOC_SYS_CTRL
 
+	#Cleanup large DRM...
+	./scripts/config --disable CONFIG_DRM_RADEON
+	./scripts/config --disable CONFIG_DRM_NOUVEAU
+	./scripts/config --disable CONFIG_DRM_SUN4I
+
 	echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig"
 	make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig
 fi
