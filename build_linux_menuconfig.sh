@@ -32,6 +32,7 @@ fi
 make ARCH=riscv CROSS_COMPILE=${CC} clean
 
 if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
+	echo "make ARCH=riscv CROSS_COMPILE=${CC} mpfs_defconfig"
 	make ARCH=riscv CROSS_COMPILE=${CC} mpfs_defconfig
 
 	#
@@ -121,10 +122,28 @@ if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
 
 	#./scripts/config --disable CONFIG_VMAP_STACK
 	#./scripts/config --disable CONFIG_SMP
+	echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig"
+	make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig
 else
+	echo "make ARCH=riscv CROSS_COMPILE=${CC} defconfig"
 	make ARCH=riscv CROSS_COMPILE=${CC} defconfig
+
+	./scripts/config --enable CONFIG_PCIE_MICROCHIP_HOST
+	./scripts/config --enable CONFIG_OF_OVERLAY
+	./scripts/config --enable CONFIG_I2C
+	./scripts/config --enable CONFIG_EEPROM_AT24
+	./scripts/config --enable CONFIG_I2C_MICROCHIP_CORE
+
+	./scripts/config --enable CONFIG_SPI_MICROCHIP_CORE
+	./scripts/config --enable CONFIG_SPI_MICROCHIP_CORE_QSPI
+	./scripts/config --module CONFIG_SPI_SPIDEV
+	./scripts/config --enable CONFIG_GPIO_SYSFS
+
+	echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig"
+	make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig
 fi
 
+echo "make ARCH=riscv CROSS_COMPILE=${CC} menuconfig"
 make ARCH=riscv CROSS_COMPILE=${CC} menuconfig
 
 echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} Image modules dtbs"
