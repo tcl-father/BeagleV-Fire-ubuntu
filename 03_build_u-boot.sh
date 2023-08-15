@@ -9,6 +9,7 @@ make -C u-boot ARCH=riscv CROSS_COMPILE=${CC} distclean
 cd ./u-boot/
 #patch -p1 < ../patches/u-boot/0001-Use-MMUART0-for-stdout.patch
 #exit 2
+cp -v ../patches/u-boot/microchip_mpfs_icicle.h include/configs/microchip_mpfs_icicle.h
 cp -v ../patches/u-boot/microchip-mpfs-icicle-kit.dts arch/riscv/dts/
 cp -v ../patches/u-boot/microchip_mpfs_icicle_defconfig .config
 cd ../
