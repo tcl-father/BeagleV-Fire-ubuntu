@@ -10,6 +10,9 @@ UBOOT_REPO="https://github.com/polarfire-soc/u-boot.git"
 LINUX_BRANCH="linux4microchip+fpga-2023.06"
 LINUX_REPO="https://github.com/linux4microchip/linux.git"
 
+#LINUX_BRANCH="master"
+#LINUX_REPO="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git"
+
 GIT_DEPTH="20"
 
 if [ ! -f ./mirror/x86_64-gcc-11.4.0-nolibc-riscv64-linux.tar.xz ] ; then
