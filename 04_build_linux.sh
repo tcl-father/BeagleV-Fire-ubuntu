@@ -29,7 +29,24 @@ make ARCH=riscv CROSS_COMPILE=${CC} mpfs_defconfig
 
 ./scripts/config --enable CONFIG_MEMCG
 ./scripts/config --enable CONFIG_MEMCG_KMEM
+./scripts/config --enable CONFIG_RT_GROUP_SCHED
+./scripts/config --enable CONFIG_SCHED_MM_CID
+./scripts/config --enable CONFIG_CGROUP_PIDS
+./scripts/config --enable CONFIG_CGROUP_FREEZER
 ./scripts/config --enable CONFIG_CGROUP_HUGETLB
+./scripts/config --enable CONFIG_CPUSETS
+./scripts/config --enable CONFIG_PROC_PID_CPUSET
+./scripts/config --enable CONFIG_CGROUP_DEVICE
+./scripts/config --enable CONFIG_CGROUP_CPUACCT
+./scripts/config --enable CONFIG_CGROUP_PERF
+./scripts/config --enable CONFIG_NAMESPACES
+./scripts/config --enable CONFIG_UTS_NS
+./scripts/config --enable CONFIG_TIME_NS
+./scripts/config --enable CONFIG_IPC_NS
+./scripts/config --enable CONFIG_USER_NS
+./scripts/config --enable CONFIG_PID_NS
+./scripts/config --enable CONFIG_NET_NS
+./scripts/config --enable CONFIG_CHECKPOINT_RESTORE
 
 ./scripts/config --set-str CONFIG_CMDLINE ""
 ./scripts/config --disable CONFIG_CMDLINE_FALLBACK
@@ -89,6 +106,11 @@ make ARCH=riscv CROSS_COMPILE=${CC} mpfs_defconfig
 
 ./scripts/config --disable CONFIG_IMA
 ./scripts/config --disable CONFIG_EVM
+
+#./scripts/config --disable CONFIG_VMAP_STACK
+#./scripts/config --disable CONFIG_SMP
+
+#make ARCH=riscv CROSS_COMPILE=${CC} menuconfig
 
 echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} Image modules dtbs"
 make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} Image modules dtbs
