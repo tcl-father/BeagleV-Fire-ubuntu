@@ -1,8 +1,8 @@
 #!/bin/bash
 
 if ! id | grep -q root; then
-	echo "./create_sdcard_img.sh must be run as root:"
-	echo "sudo ./create_sdcard_img.sh"
+	echo "./07_create_sdcard_img.sh must be run as root:"
+	echo "sudo ./07_create_sdcard_img.sh"
 	exit
 fi
 
