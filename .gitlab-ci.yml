@@ -26,10 +26,11 @@ build:
     - ./05_generate_payload.bin.sh
     - ./06_generate_debian_console_root.sh
     - ./07_create_sdcard_img.sh
-    - tree -s ./deploy/
-    - cp ./deploy/images/sdcard.img  ./
+    - xz -vT8 deploy/images/sdcard.img
+    - tree -s deploy/
+    - cp deploy/images/sdcard.img.xz  ./
   artifacts:
     expire_in: 14 days
     name: "$CI_PROJECT_NAME-$CI_JOB_ID"
     paths:
-      - "sdcard.img"
+      - "sdcard.img.xz"
