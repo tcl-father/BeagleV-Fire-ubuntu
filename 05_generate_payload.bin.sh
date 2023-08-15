@@ -4,6 +4,8 @@ cd ./deploy/
 
 if [ -f ./src.bin ] ; then
 
+	tree -s ./
+
 	if [ -f ./input/payload.bin ] ; then
 		rm -rf ./input/payload.bin || true
 	fi
@@ -12,6 +14,7 @@ if [ -f ./src.bin ] ; then
 
 	./hss-payload-generator -vv -c config.yaml ./input/payload.bin
 
+	date
 	unset test_var
 	test_var=$(strings ./u-boot.bin | grep 'U-Boot 20' | head -n1 || true)
 	if [ ! "x${test_var}" = "x" ] ; then

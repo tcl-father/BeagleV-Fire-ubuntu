@@ -7,6 +7,8 @@ deploy/.modules
 deploy/*-modules.tar.gz
 deploy/Image
 deploy/*.dtb
+deploy/debian*
+ignore/
 mirror/
 riscv-toolchain/
 hart-software-services/
