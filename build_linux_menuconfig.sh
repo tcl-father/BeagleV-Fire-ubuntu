@@ -123,6 +123,13 @@ if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
 
 	#./scripts/config --disable CONFIG_VMAP_STACK
 	#./scripts/config --disable CONFIG_SMP
+
+	#Optimize:
+	./scripts/config --enable CONFIG_IP_NF_IPTABLES
+	./scripts/config --enable CONFIG_NETFILTER_XTABLES
+	./scripts/config --enable CONFIG_NLS_ISO8859_1
+	./scripts/config --enable CONFIG_BLK_DEV_DM
+
 	echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig"
 	make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig
 else
@@ -186,6 +193,12 @@ else
 	./scripts/config --disable CONFIG_DRM_RADEON
 	./scripts/config --disable CONFIG_DRM_NOUVEAU
 	./scripts/config --disable CONFIG_DRM_SUN4I
+
+	#Optimize:
+	./scripts/config --enable CONFIG_IP_NF_IPTABLES
+	./scripts/config --enable CONFIG_NETFILTER_XTABLES
+	./scripts/config --enable CONFIG_NLS_ISO8859_1
+	./scripts/config --enable CONFIG_BLK_DEV_DM
 
 	echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig"
 	make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig
