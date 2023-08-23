@@ -231,6 +231,11 @@ fi
 echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} Image modules dtbs"
 make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} Image modules dtbs
 
+if [ ! -f ./arch/riscv/boot/Image ] ; then
+	echo "Build Failed"
+	exit 2
+fi
+
 KERNEL_UTS=$(cat "${wdir}/linux/include/generated/utsrelease.h" | awk '{print $3}' | sed 's/\"//g' )
 
 if [ -d "${wdir}/deploy/tmp/" ] ; then
