@@ -272,4 +272,10 @@ cp -v ./arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dtb ../deploy/input/
 
 cd ../
 
+cp -v ./patches/linux/beaglev_fire.its ./deploy/input/
+cd ./deploy/input/
+gzip -9 Image -c > Image.gz
+if [ -f ../../u-boot/tools/mkimage ] ; then
+	../../u-boot/tools/mkimage -f beaglev_fire.its beaglev_fire.itb
+fi
 #
