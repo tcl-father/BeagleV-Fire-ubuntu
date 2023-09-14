@@ -146,6 +146,10 @@ if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
 	./scripts/config --enable CONFIG_NLS_ISO8859_1
 	./scripts/config --enable CONFIG_BLK_DEV_DM
 
+	#Flattened Image Tree file doesn't seem to have an append... lets force it here..
+    ./scripts/config --set-str CONFIG_CMDLINE "root=/dev/mmcblk0p3 ro rootfstype=ext4 rootwait console=ttyS0,115200 earlycon uio_pdrv_genirq.of_id=generic-uio net.ifnames=0"
+	./scripts/config --enable CONFIG_CMDLINE_FORCE
+
 	echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig"
 	make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig
 else
