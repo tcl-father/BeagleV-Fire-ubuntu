@@ -29,6 +29,7 @@ read -rsp $'Press any key to continue...\n' -n1 key
 dtbo_ls=$(ls -l /lib/firmware/mpfs_dtbo.spi)
 dtbo_size=$(echo $dtbo_ls | cut -d " "  -f 5)
 
+echo "Writing mpfs_dtbo.spi to /dev/mtd0"
 /usr/sbin/mtd_debug write /dev/mtd0 0x400 $dtbo_size /lib/firmware/mpfs_dtbo.spi > /dev/zero
 
 # Fake the presence of a golden image for now.
