@@ -14,3 +14,4 @@ deploy/debian*
 /hart-software-services/
 /u-boot/
 /linux/
+/gateware-snapshots/

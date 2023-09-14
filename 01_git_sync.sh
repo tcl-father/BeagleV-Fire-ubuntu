@@ -51,6 +51,10 @@ fi
 echo "git clone -b ${LINUX_BRANCH} ${LINUX_REPO} ./linux/ --depth=${GIT_DEPTH}"
 git clone -b ${LINUX_BRANCH} ${LINUX_REPO} ./linux/ --depth=${GIT_DEPTH}
 
+if [ -d ./gateware-snapshots ] ; then
+	rm -rf ./gateware-snapshots || true
+fi
+git clone git@git.beagleboard.org:beaglev-fire/gateware-snapshots.git
 
 #BUILDROOT_BRANCH="bvf"
 #BUILDROOT_REPO="https://git.beagleboard.org/beaglev-fire/buildroot-external-microchip.git"
