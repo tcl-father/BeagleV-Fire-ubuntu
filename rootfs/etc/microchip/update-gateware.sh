@@ -30,12 +30,15 @@ dtbo_ls=$(ls -l /lib/firmware/mpfs_dtbo.spi)
 dtbo_size=$(echo $dtbo_ls | cut -d " "  -f 5)
 
 echo "Writing mpfs_dtbo.spi to /dev/mtd0"
+echo "/usr/sbin/mtd_debug write /dev/mtd0 0x400 $dtbo_size /lib/firmware/mpfs_dtbo.spi"
 /usr/sbin/mtd_debug write /dev/mtd0 0x400 $dtbo_size /lib/firmware/mpfs_dtbo.spi > /dev/zero
 
 # Fake the presence of a golden image for now.
+echo "/usr/sbin/mtd_debug write /dev/mtd0 0 4 /dev/zero"
 /usr/sbin/mtd_debug write /dev/mtd0 0 4 /dev/zero > /dev/zero
 
 # Initiate FPGA update.
+echo "echo 1 > /sys/kernel/debug/fpga/microchip_exec_update"
 echo 1 > /sys/kernel/debug/fpga/microchip_exec_update
 
 # Reboot Linux for the gateware update to take effect.
