@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if ! id | grep -q root; then
+	echo "must be run as root"
+	exit
+fi
+
 if [ -d $1 ]
 then
     echo "Changing gateware."

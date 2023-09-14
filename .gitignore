@@ -8,6 +8,7 @@ deploy/*-modules.tar.gz
 deploy/Image
 deploy/*.dtb
 deploy/debian*
+deploy/ubuntu*
 /ignore/
 /mirror/
 /riscv-toolchain/
