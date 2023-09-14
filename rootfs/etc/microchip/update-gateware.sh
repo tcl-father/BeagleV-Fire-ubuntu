@@ -12,6 +12,11 @@ echo "|                        after Linux has shutdown.                        
 echo "|                                                                              |"
 echo "================================================================================"
 
+if [ ! -f /usr/sbin/mtd_debug ] ; then
+    echo "Install mtd-utils package"
+    exit 2
+fi
+
 read -rsp $'Press any key to continue...\n' -n1 key
 
 # Already mounted by default...
