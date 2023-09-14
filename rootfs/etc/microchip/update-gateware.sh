@@ -13,14 +13,19 @@ echo "|                                                                         
 echo "================================================================================"
 
 if [ ! -f /usr/sbin/mtd_debug ] ; then
-    echo "Install mtd-utils package"
-    exit 2
+	echo "Install mtd-utils package"
+	exit 2
 fi
 
-read -rsp $'Press any key to continue...\n' -n1 key
+if [ ! -f /lib/firmware/mpfs_bitstream.spi ] ; then
+	exit 2
+fi
 
-# Already mounted by default...
-#/usr/bin/mount -t debugfs none /sys/kernel/debug
+#read -rsp $'Press any key to continue...\n' -n1 key
+
+if [ ! -f /sys/kernel/debug/fpga/microchip_exec_update ] ; then
+	/usr/bin/mount -t debugfs none /sys/kernel/debug
+fi
 
 # Trash exisitng device tree overlay in case the rest of the process fails:
 /usr/sbin/mtd_debug erase /dev/mtd0 0x0 0x10000
@@ -30,15 +35,13 @@ dtbo_ls=$(ls -l /lib/firmware/mpfs_dtbo.spi)
 dtbo_size=$(echo $dtbo_ls | cut -d " "  -f 5)
 
 echo "Writing mpfs_dtbo.spi to /dev/mtd0"
-echo "/usr/sbin/mtd_debug write /dev/mtd0 0x400 $dtbo_size /lib/firmware/mpfs_dtbo.spi"
 /usr/sbin/mtd_debug write /dev/mtd0 0x400 $dtbo_size /lib/firmware/mpfs_dtbo.spi > /dev/zero
 
 # Fake the presence of a golden image for now.
-echo "/usr/sbin/mtd_debug write /dev/mtd0 0 4 /dev/zero"
 /usr/sbin/mtd_debug write /dev/mtd0 0 4 /dev/zero > /dev/zero
 
 # Initiate FPGA update.
-echo "echo 1 > /sys/kernel/debug/fpga/microchip_exec_update"
+echo "Triggering FPGA Gateware Update (/sys/kernel/debug/fpga/microchip_exec_update)"
 echo 1 > /sys/kernel/debug/fpga/microchip_exec_update
 
 # Reboot Linux for the gateware update to take effect.
