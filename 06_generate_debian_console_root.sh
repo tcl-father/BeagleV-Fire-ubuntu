@@ -72,6 +72,14 @@ fi
 # setuid root ping+ping6
 chmod u+s ./ignore/.root/usr/bin/ping ./ignore/.root/usr/bin/ping6
 
+mkdir -p ./ignore/.root/etc/beagleboard/gateware/
+mkdir -p ./ignore/.root/etc/microchip/
+
+cp -v ./rootfs/etc/beagleboard/gateware/* ./ignore/.root/etc/beagleboard/gateware/
+cp -v ./rootfs/etc/microchip/* ./ignore/.root/etc/microchip/
+chmod +x ./ignore/.root/etc/beagleboard/gateware/change-gateware.sh
+chmod +x ./ignore/.root/etc/microchip/update-gateware.sh
+
 if [ -f ./deploy/.modules ] ; then
 	version=$(cat ./deploy/.modules || true)
 	if [ -f ./deploy/${version}-modules.tar.gz ] ; then
