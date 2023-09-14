@@ -25,6 +25,11 @@ if [ -d ./tmp ] ; then
 	rm -rf ./tmp || true
 fi
 
+if [ ! -f ./images/sdcard.img ]; then
+	echo "Error: ./images/sdcard.img was not generated"
+	exit 2
+fi
+
 if [ -f /usr/bin/bmaptool ] ; then
 	if [ -f ./images/sdcard.bmap ] ; then
 		rm -rf ./images/sdcard.bmap || true

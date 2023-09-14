@@ -70,11 +70,7 @@
 
 #define CONFIG_EXTRA_ENV_SETTINGS \
 	"bootm_size=0x10000000\0" \
-	"kernel_addr_r=0x80200000\0" \
-	"fdt_addr_r=0x8a000000\0" \
-	"scriptaddr=0x88100000\0" \
-	"pxefile_addr_r=0x88200000\0" \
-	"ramdisk_addr_r=0x88300000\0" \
+	"scriptaddr=0x8e000000\0" \
 	BOOTENV_DESIGN_OVERLAYS \
 	BOOTENV \
 

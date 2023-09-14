@@ -37,15 +37,17 @@ tar xfp ./deploy/debian-sid-console-riscv64-${datestamp}/riscv64-rootfs-*.tar -C
 sync
 
 mkdir -p ./deploy/input/ || true
+cp -v ./deploy/boot.scr deploy/input/
+
 echo "label Linux eMMC" > ./deploy/input/extlinux.conf
 echo "    kernel /Image" >> ./deploy/input/extlinux.conf
 #echo "    append root=/dev/mmcblk0p3 ro rootfstype=ext4 rootwait console=ttyS0,115200 earlycon uio_pdrv_genirq.of_id=generic-uio net.ifnames=0" >> ./deploy/input/extlinux.conf
 echo "    fdtdir /" >> ./deploy/input/extlinux.conf
 echo "    fdt /mpfs-beaglev-fire.dtb" >> ./deploy/input/extlinux.conf
-#echo "    #fdtoverlays /overlays/<file>.dtbo" >> ./deploy/input/extlinux.conf
+echo "    #fdtoverlays /overlays/<file>.dtbo" >> ./deploy/input/extlinux.conf
 
-echo "extlinux/extlinux.conf"
-cat ./deploy/input/extlinux.conf
+#echo "extlinux/extlinux.conf"
+#cat ./deploy/input/extlinux.conf
 
 mkdir -p ./ignore/.root/boot/firmware/ || true
 
