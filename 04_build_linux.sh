@@ -50,11 +50,6 @@ if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
 	./scripts/config --enable CONFIG_TASK_XACCT
 
 	#
-	# RCU Subsystem
-	#
-	./scripts/config --module CONFIG_IKHEADERS
-
-	#
 	# Scheduler features
 	#
 	# end of Scheduler features
