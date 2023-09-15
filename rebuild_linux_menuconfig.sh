@@ -9,7 +9,12 @@ cd ./linux/
 make ARCH=riscv CROSS_COMPILE=${CC} menuconfig
 
 echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} Image modules dtbs"
-make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} Image modules dtbs
+make -j${CORES} ARCH=riscv CROSS_COMPILE="ccache ${CC}" Image modules dtbs
+
+if [ ! -f ./arch/riscv/boot/Image ] ; then
+	echo "Build Failed"
+	exit 2
+fi
 
 KERNEL_UTS=$(cat "${wdir}/linux/include/generated/utsrelease.h" | awk '{print $3}' | sed 's/\"//g' )
 
@@ -47,4 +52,10 @@ cp -v ./arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dtb ../deploy/input/
 
 cd ../
 
+cp -v ./patches/linux/beaglev_fire.its ./deploy/input/
+cd ./deploy/input/
+gzip -9 Image -c > Image.gz
+if [ -f ../../u-boot/tools/mkimage ] ; then
+	../../u-boot/tools/mkimage -f beaglev_fire.its beaglev_fire.itb
+fi
 #
