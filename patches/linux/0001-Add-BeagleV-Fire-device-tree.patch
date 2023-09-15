@@ -1,21 +1,21 @@
-From 97e16ad53f7ac47279fbc559df6dd5ebb19c002b Mon Sep 17 00:00:00 2001
+From 55aaa24d18a63b09b316b3c6d334985f293e8b25 Mon Sep 17 00:00:00 2001
 From: vauban353 <vauban353@gmail.com>
 Date: Sun, 6 Aug 2023 09:42:33 +0100
-Subject: [PATCH] Add: BeagleV-Fire device tree.
+Subject: [PATCH 1/8] Add: BeagleV-Fire device tree.
 
 ---
- .../microchip/mpfs-beaglev-fire-fabric.dtsi   | 156 +++++++
+ .../microchip/mpfs-beaglev-fire-fabric.dtsi   | 155 +++++++
  .../boot/dts/microchip/mpfs-beaglev-fire.dts  | 380 ++++++++++++++++++
- 2 files changed, 536 insertions(+)
+ 2 files changed, 535 insertions(+)
  create mode 100644 arch/riscv/boot/dts/microchip/mpfs-beaglev-fire-fabric.dtsi
  create mode 100644 arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
 
 diff --git a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire-fabric.dtsi b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire-fabric.dtsi
 new file mode 100644
-index 000000000000..c6f2c7ed9bc2
+index 000000000..60ba0883a
 --- /dev/null
 +++ b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire-fabric.dtsi
-@@ -0,0 +1,156 @@
+@@ -0,0 +1,155 @@
 +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
 +/* Copyright (c) 2020-2021 Microchip Technology Inc */
 +
@@ -93,7 +93,7 @@ index 000000000000..c6f2c7ed9bc2
 +			                  "B0_HSIO70P", "B0_HSIO71P", "B0_HSIO83P", "B0_HSIO73N_C2P_CLKP",
 +			                  "XCVR1_RX_VALID", "XCVR1_LOCK", "XCVR1_ERROR",
 +							  "XCVR2_RX_VALID", "XCVR2_LOCK", "XCVR2_ERROR",
-+							  "XCVR3_RX_VALID", "XCVR3_LOCK", "XCVR3_ERROR", 
++							  "XCVR3_RX_VALID", "XCVR3_LOCK", "XCVR3_ERROR",
 +							  "XCVR_0B_REF_CLK_PLL_LOCK", "XCVR_0C_REF_CLK_PLL_LOCK", "B0_HSIO81N";
 +		};
 +	};
@@ -171,10 +171,9 @@ index 000000000000..c6f2c7ed9bc2
 +		      "dll0_ref", "dll1_ref";
 +	status = "okay";
 +};
-+
 diff --git a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
 new file mode 100644
-index 000000000000..0c608922e54e
+index 000000000..743da3845
 --- /dev/null
 +++ b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
 @@ -0,0 +1,380 @@
@@ -325,7 +324,7 @@ index 000000000000..0c608922e54e
 +
 +&gpio1 {
 +	ngpios=<24>;
-+	gpio-line-names = "", "", "", "", "", "", "", "", "", "", 
++	gpio-line-names = "", "", "", "", "", "", "", "", "", "",
 +					  "", "", "", "", "", "", "", "", "", "",
 +					  "ADC_IRQn", "", "", "USB_OCn";
 +	status = "okay";
@@ -559,5 +558,5 @@ index 000000000000..0c608922e54e
 +	dr_mode = "otg";
 +};
 -- 
-2.25.1
+2.39.2
 

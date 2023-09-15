@@ -8,13 +8,14 @@ cd ./linux/
 
 if [ ! -f ./.patched ] ; then
 	if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
-		patch -p1 < ../patches/linux/0001-Add-BeagleV-Fire-device-tree.patch
-		patch -p1 < ../patches/linux/0001-PCIe-Change-controller-and-bridge-base-address.patch
-		patch -p1 < ../patches/linux/0001-GPIO-Add-Microchip-CoreGPIO-driver.patch
-		patch -p1 < ../patches/linux/0001-ADC-Add-Microchip-MCP356X-driver.patch
-		patch -p1 < ../patches/linux/0001-Microchip-QSPI-Add-regular-transfers.patch
-		patch -p1 < ../patches/linux/0001-BeagleV-Fire-Add-printk-to-IM219-driver-for-board-te.patch
-		patch -p1 < ../patches/linux/0001-MMC-SPI-Hack-to-support-non-DMA-capable-SPI-ctrl.patch
+		git am ../patches/linux/0001-Add-BeagleV-Fire-device-tree.patch
+		git am ../patches/linux/0002-PCIe-Change-controller-and-bridge-base-address.patch
+		git am ../patches/linux/0003-GPIO-Add-Microchip-CoreGPIO-driver.patch
+		git am ../patches/linux/0004-ADC-Add-Microchip-MCP356X-driver.patch
+		git am ../patches/linux/0005-Microchip-QSPI-Add-regular-transfers.patch
+		git am ../patches/linux/0006-BeagleV-Fire-Add-printk-to-IM219-driver-for-board-te.patch
+		git am ../patches/linux/0007-MMC-SPI-Hack-to-support-non-DMA-capable-SPI-ctrl.patch
+		git am ../patches/linux/0008-Add-wireless-regdb-regulatory-database-file.patch
 	fi
 	touch .patched
 fi

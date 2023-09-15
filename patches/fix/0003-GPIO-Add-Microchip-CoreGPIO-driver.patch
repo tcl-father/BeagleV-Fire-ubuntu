@@ -1,7 +1,7 @@
-From 49e37dfd8c7070958960ba23d0e3e005b6604940 Mon Sep 17 00:00:00 2001
+From 37ff4eff8ff033c48aa73526fec7291127326dcb Mon Sep 17 00:00:00 2001
 From: vauban353 <vauban353@gmail.com>
 Date: Fri, 21 Jul 2023 19:33:28 +0100
-Subject: [PATCH] GPIO: Add Microchip CoreGPIO driver.
+Subject: [PATCH 3/8] GPIO: Add Microchip CoreGPIO driver.
 
 ---
  drivers/gpio/Kconfig               |   8 +
@@ -11,7 +11,7 @@ Subject: [PATCH] GPIO: Add Microchip CoreGPIO driver.
  create mode 100644 drivers/gpio/gpio-microchip-core.c
 
 diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-index d71f5bd6f532..8e3858e34cc7 100644
+index d71f5bd6f..8e3858e34 100644
 --- a/drivers/gpio/Kconfig
 +++ b/drivers/gpio/Kconfig
 @@ -501,6 +501,14 @@ config GPIO_POLARFIRE_SOC
@@ -30,7 +30,7 @@ index d71f5bd6f532..8e3858e34cc7 100644
  	bool "PXA GPIO support"
  	depends on ARCH_PXA || ARCH_MMP || COMPILE_TEST
 diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-index 9be0691d9660..05a65ff04b23 100644
+index 9be0691d9..05a65ff04 100644
 --- a/drivers/gpio/Makefile
 +++ b/drivers/gpio/Makefile
 @@ -121,6 +121,7 @@ obj-$(CONFIG_GPIO_PISOSR)		+= gpio-pisosr.o
@@ -43,7 +43,7 @@ index 9be0691d9660..05a65ff04b23 100644
  obj-$(CONFIG_GPIO_RC5T583)		+= gpio-rc5t583.o
 diff --git a/drivers/gpio/gpio-microchip-core.c b/drivers/gpio/gpio-microchip-core.c
 new file mode 100644
-index 000000000000..fd630cac4fe5
+index 000000000..fd630cac4
 --- /dev/null
 +++ b/drivers/gpio/gpio-microchip-core.c
 @@ -0,0 +1,319 @@
@@ -367,5 +367,5 @@ index 000000000000..fd630cac4fe5
 +};
 +builtin_platform_driver(mchp_core_gpio_driver);
 -- 
-2.25.1
+2.39.2
 

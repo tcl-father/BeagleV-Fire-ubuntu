@@ -1,7 +1,7 @@
-From 51e3b82d70fd95e72035cfc393b50a9b5410cd35 Mon Sep 17 00:00:00 2001
+From deadef387eed1bc60c8d2570e86a9bd0b4b196b4 Mon Sep 17 00:00:00 2001
 From: vauban353 <vauban353@gmail.com>
 Date: Fri, 16 Jun 2023 16:05:01 +0100
-Subject: [PATCH] ADC: Add Microchip MCP356X driver.
+Subject: [PATCH 4/8] ADC: Add Microchip MCP356X driver.
 
 ---
  drivers/iio/adc/Kconfig   |   10 +
@@ -11,7 +11,7 @@ Subject: [PATCH] ADC: Add Microchip MCP356X driver.
  create mode 100644 drivers/iio/adc/mcp356x.c
 
 diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-index 48763d6a89a4..6c6b62a7f3e6 100644
+index 48763d6a8..6c6b62a7f 100644
 --- a/drivers/iio/adc/Kconfig
 +++ b/drivers/iio/adc/Kconfig
 @@ -741,6 +741,16 @@ config MCP3911
@@ -32,7 +32,7 @@ index 48763d6a89a4..6c6b62a7f3e6 100644
  	tristate "Mediatek MT6360 ADC driver"
  	depends on MFD_MT6360
 diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-index d5ca372050cb..5b3f027ac74c 100644
+index d5ca37205..5b3f027ac 100644
 --- a/drivers/iio/adc/Makefile
 +++ b/drivers/iio/adc/Makefile
 @@ -68,6 +68,7 @@ obj-$(CONFIG_MAX9611) += max9611.o
@@ -45,7 +45,7 @@ index d5ca372050cb..5b3f027ac74c 100644
  obj-$(CONFIG_MEN_Z188_ADC) += men_z188_adc.o
 diff --git a/drivers/iio/adc/mcp356x.c b/drivers/iio/adc/mcp356x.c
 new file mode 100644
-index 000000000000..22d59413d342
+index 000000000..22d59413d
 --- /dev/null
 +++ b/drivers/iio/adc/mcp356x.c
 @@ -0,0 +1,1396 @@
@@ -1446,5 +1446,5 @@ index 000000000000..22d59413d342
 +MODULE_LICENSE("GPL v2");
 +MODULE_VERSION("0.1.2");
 -- 
-2.25.1
+2.39.2
 
