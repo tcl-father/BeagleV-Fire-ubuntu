@@ -13,6 +13,7 @@ cache:
   paths:
     - mirror/x86_64-gcc-*-linux.tar.xz
     - deploy/*.tar.xz
+    - ccache.tar.gz
 
 build:
   tags:
@@ -22,7 +23,13 @@ build:
     - ./01_git_sync.sh
     - ./02_build_hss.sh
     - ./03_build_u-boot.sh
+    - mkdir -p /root/.cache/ccache/ || true
+    - ccache -s
+    - tar -xf ccache.tar.gz -C / || true
+    - ccache -s
     - ./04_build_linux.sh
+    - ccache -s
+    - tar -cf ccache.tar.gz /root/.cache/ccache/
     - ./05_generate_payload.bin.sh
     - ./06_generate_ubuntu_console_root.sh
     - ./07_create_sdcard_img.sh
