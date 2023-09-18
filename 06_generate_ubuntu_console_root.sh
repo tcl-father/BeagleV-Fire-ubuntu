@@ -78,6 +78,12 @@ fi
 # setuid root ping+ping6
 chmod u+s ./ignore/.root/usr/bin/ping ./ignore/.root/usr/bin/ping6
 
+#Default nginx export
+rm -f ./ignore/.root/etc/nginx/sites-enabled/default || true
+cp -v ./ignore/.root/etc/bbb.io/templates/nginx/nginx-autoindex ./ignore/.root/etc/nginx/sites-enabled/default
+cp -v ./ignore/.root/etc/bbb.io/templates/nginx/*.html ./ignore/.root/var/www/html/
+rm -f ./ignore/.root/var/www/html/index.nginx-debian.html || true
+
 mkdir -p ./ignore/.root/etc/beagleboard/gateware/board-tests/
 mkdir -p ./ignore/.root/etc/beagleboard/gateware/default/
 mkdir -p ./ignore/.root/etc/microchip/
