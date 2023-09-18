@@ -17,7 +17,11 @@ if [ -f /tmp/latest ] ; then
 	datestamp=$(cat "/tmp/latest" | awk -F 'riscv64-' '{print $2}' | awk -F '.' '{print $1}')
 
 	if [ ! -f ./deploy/debian-sid-console-riscv64-${datestamp}/riscv64-rootfs-debian-sid.tar ] ; then
-		wget -c --directory-prefix=./deploy https://rcn-ee.net/rootfs/debian-riscv64-sid-minimal/${datestamp}/${latest_rootfs}
+		if [ -f ./.gitlab-runner ] ; then
+			wget -c --directory-prefix=./deploy http://192.168.1.98/rcn-ee.us/rootfs/debian-riscv64-sid-minimal/${datestamp}/${latest_rootfs}
+		else
+			wget -c --directory-prefix=./deploy https://rcn-ee.net/rootfs/debian-riscv64-sid-minimal/${datestamp}/${latest_rootfs}
+		fi
 		cd ./deploy/
 		tar xf ${latest_rootfs}
 		cd ../
@@ -75,7 +79,7 @@ cp -v ./ignore/.root/etc/bbb.io/templates/nginx/nginx-autoindex ./ignore/.root/e
 cp -v ./ignore/.root/etc/bbb.io/templates/nginx/*.html ./ignore/.root/var/www/html/
 rm -f ./ignore/.root/var/www/html/index.nginx-debian.html || true
 
-mkdir -p ./ignore/.root/etc/beagleboard/gateware/board-tests/
+#mkdir -p ./ignore/.root/etc/beagleboard/gateware/board-tests/
 mkdir -p ./ignore/.root/etc/beagleboard/gateware/default/
 mkdir -p ./ignore/.root/etc/microchip/
 
@@ -84,8 +88,8 @@ cp -v ./rootfs/etc/microchip/* ./ignore/.root/etc/microchip/
 chmod +x ./ignore/.root/etc/beagleboard/gateware/change-gateware.sh
 chmod +x ./ignore/.root/etc/microchip/update-gateware.sh
 
-cp -v ./gateware-snapshots/board-tests/*.spi ./ignore/.root/etc/beagleboard/gateware/board-tests/
-cp -v ./gateware-snapshots/default/*.spi ./ignore/.root/etc/beagleboard/gateware/default/
+#cp -v ./gateware-snapshots/board-tests/*.spi ./ignore/.root/etc/beagleboard/gateware/board-tests/
+cp -v ./gateware-snapshots/BVF-0.2.0/default/LinuxProgramming/*.spi ./ignore/.root/etc/beagleboard/gateware/default/
 
 if [ -f ./deploy/.modules ] ; then
 	version=$(cat ./deploy/.modules || true)

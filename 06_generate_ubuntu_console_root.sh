@@ -79,7 +79,7 @@ cp -v ./ignore/.root/etc/bbb.io/templates/nginx/nginx-autoindex ./ignore/.root/e
 cp -v ./ignore/.root/etc/bbb.io/templates/nginx/*.html ./ignore/.root/var/www/html/
 rm -f ./ignore/.root/var/www/html/index.nginx-debian.html || true
 
-mkdir -p ./ignore/.root/etc/beagleboard/gateware/board-tests/
+#mkdir -p ./ignore/.root/etc/beagleboard/gateware/board-tests/
 mkdir -p ./ignore/.root/etc/beagleboard/gateware/default/
 mkdir -p ./ignore/.root/etc/microchip/
 
@@ -88,8 +88,8 @@ cp -v ./rootfs/etc/microchip/* ./ignore/.root/etc/microchip/
 chmod +x ./ignore/.root/etc/beagleboard/gateware/change-gateware.sh
 chmod +x ./ignore/.root/etc/microchip/update-gateware.sh
 
-cp -v ./gateware-snapshots/board-tests/*.spi ./ignore/.root/etc/beagleboard/gateware/board-tests/
-cp -v ./gateware-snapshots/default/*.spi ./ignore/.root/etc/beagleboard/gateware/default/
+#cp -v ./gateware-snapshots/board-tests/*.spi ./ignore/.root/etc/beagleboard/gateware/board-tests/
+cp -v ./gateware-snapshots/BVF-0.2.0/default/LinuxProgramming/*.spi ./ignore/.root/etc/beagleboard/gateware/default/
 
 if [ -f ./deploy/.modules ] ; then
 	version=$(cat ./deploy/.modules || true)
