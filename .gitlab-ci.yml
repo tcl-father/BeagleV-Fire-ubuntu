@@ -38,7 +38,7 @@ build:
     - cp -v deploy/images/sdcard.img.xz ./
     - cp -v deploy/images/sdcard.bmap ./
     - cp -v deploy/input/beaglev_fire.itb ./
-    - cp -v deploy/*-modules.tar.gz ./
+    - cp -v deploy/*-modules.tar.gz ./modules.tar.gz
   artifacts:
     expire_in: 14 days
     name: "$CI_PROJECT_NAME-$CI_JOB_ID"
@@ -46,4 +46,4 @@ build:
       - "sdcard.img.xz"
       - "sdcard.bmap"
       - "beaglev_fire.itb"
-      - "*-modules.tar.gz"
+      - "modules.tar.gz"
