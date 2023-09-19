@@ -39,7 +39,7 @@ if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
 	echo "make ARCH=riscv CROSS_COMPILE=${CC} mpfs_defconfig"
 	make ARCH=riscv CROSS_COMPILE=${CC} mpfs_defconfig
 
-	./scripts/config --set-str CONFIG_LOCALVERSION "-$(date +%Y%M%d)"
+	./scripts/config --set-str CONFIG_LOCALVERSION "-$(date +%Y%m%d)"
 
 	echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig"
 	make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig
@@ -119,7 +119,7 @@ else
 	./scripts/config --enable CONFIG_NLS_ISO8859_1
 	./scripts/config --enable CONFIG_BLK_DEV_DM
 
-	./scripts/config --set-str CONFIG_LOCALVERSION "-$(date +%Y%M%d)"
+	./scripts/config --set-str CONFIG_LOCALVERSION "-$(date +%Y%m%d)"
 
 	echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig"
 	make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig
