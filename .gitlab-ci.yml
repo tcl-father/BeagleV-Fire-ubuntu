@@ -19,6 +19,7 @@ build:
     - docker-amd64
   stage: build
   script:
+    - touch .gitlab-runner
     - ./01_git_sync.sh
     - ./02_build_hss.sh
     - ./03_build_u-boot.sh
