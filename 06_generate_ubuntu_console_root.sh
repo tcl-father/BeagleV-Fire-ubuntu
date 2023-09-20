@@ -62,6 +62,8 @@ echo 'debugfs  /sys/kernel/debug  debugfs  mode=755,uid=root,gid=gpio,defaults  
 #Network-Manager, ignore eth1
 cp -v ./rootfs/etc/NetworkManager/conf.d/*.conf ./ignore/.root/etc/NetworkManager/conf.d/
 
+cp -v ./ignore/.root/etc/bbb.io/templates/eth0-DHCP.network ./ignore/.root/etc/systemd/network/eth0.network || true
+
 # setuid root ping+ping6
 chmod u+s ./ignore/.root/usr/bin/ping ./ignore/.root/usr/bin/ping6
 
