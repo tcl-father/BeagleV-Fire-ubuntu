@@ -45,6 +45,7 @@ if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
 	./scripts/config --enable CONFIG_CRYPTO_USER_API_SKCIPHER
 	./scripts/config --enable CONFIG_KEY_DH_OPERATIONS
 	./scripts/config --enable CONFIG_CRYPTO_ECB
+	./scripts/config --enable CONFIG_CRYPTO_MD4
 	./scripts/config --enable CONFIG_CRYPTO_MD5
 	./scripts/config --enable CONFIG_CRYPTO_CBC
 	./scripts/config --enable CONFIG_CRYPTO_SHA256
