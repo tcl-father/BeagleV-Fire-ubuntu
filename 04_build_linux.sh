@@ -41,6 +41,20 @@ if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
 
 	./scripts/config --set-str CONFIG_LOCALVERSION "-$(date +%Y%m%d)"
 
+	./scripts/config --enable CONFIG_CRYPTO_USER_API_HASH
+	./scripts/config --enable CONFIG_CRYPTO_USER_API_SKCIPHER
+	./scripts/config --enable CONFIG_KEY_DH_OPERATIONS
+	./scripts/config --enable CONFIG_CRYPTO_ECB
+	./scripts/config --enable CONFIG_CRYPTO_MD5
+	./scripts/config --enable CONFIG_CRYPTO_CBC
+	./scripts/config --enable CONFIG_CRYPTO_SHA256
+	./scripts/config --enable CONFIG_CRYPTO_AES
+	./scripts/config --enable CONFIG_CRYPTO_DES
+	./scripts/config --enable CONFIG_CRYPTO_CMAC
+	./scripts/config --enable CONFIG_CRYPTO_HMAC
+	./scripts/config --enable CONFIG_CRYPTO_SHA512
+	./scripts/config --enable CONFIG_CRYPTO_SHA1
+
 	echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig"
 	make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig
 else
