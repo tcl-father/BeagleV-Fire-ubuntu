@@ -35,15 +35,16 @@ build:
     - ./07_create_sdcard_img.sh
     - xz -vT8 deploy/images/sdcard.img
     - tree -s deploy/
-    - cp -v deploy/images/sdcard.img.xz ./
-    - cp -v deploy/images/sdcard.bmap ./
-    - cp -v deploy/input/beaglev_fire.itb ./
-    - cp -v deploy/*-modules.tar.gz ./modules.tar.gz
+    - cp -v deploy/images/sdcard.img.xz ./deploy/
+    - cp -v deploy/images/sdcard.bmap ./deploy/
+    - cp -v deploy/input/beaglev_fire.itb ./deploy/
+    - cp -v deploy/*-modules.tar.gz ./deploy/modules.tar.gz
   artifacts:
-    expire_in: 14 days
+    expire_in: 28 days
     name: "$CI_PROJECT_NAME-$CI_JOB_ID"
     paths:
-      - "sdcard.img.xz"
-      - "sdcard.bmap"
-      - "beaglev_fire.itb"
-      - "modules.tar.gz"
+      - "deploy/sdcard.img.xz"
+      - "deploy/sdcard.bmap"
+      - "deploy/readme.md"
+      - "deploy/beaglev_fire.itb"
+      - "deploy/modules.tar.gz"
