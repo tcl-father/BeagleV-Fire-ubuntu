@@ -18,7 +18,7 @@ if [ -f /tmp/latest ] ; then
 
 	if [ ! -f ./deploy/ubuntu-23.04-console-riscv64-${datestamp}/riscv64-rootfs-ubuntu-lunar.tar ] ; then
 		if [ -f ./.gitlab-runner ] ; then
-			wget -c --directory-prefix=./deploy http://192.168.1.98/rcn-ee.us/rootfs/ubuntu-riscv64-23.04-minimal/${datestamp}/${latest_rootfs}
+			wget -c --directory-prefix=./deploy http://192.168.1.98/mirror/rcn-ee.us/rootfs/ubuntu-riscv64-23.04-minimal/${datestamp}/${latest_rootfs}
 		else
 			wget -c --directory-prefix=./deploy https://rcn-ee.net/rootfs/ubuntu-riscv64-23.04-minimal/${datestamp}/${latest_rootfs}
 		fi
@@ -60,9 +60,10 @@ echo '/dev/mmcblk0p3  /  auto  errors=remount-ro  0  1' >> ./ignore/.root/etc/fs
 echo 'debugfs  /sys/kernel/debug  debugfs  mode=755,uid=root,gid=gpio,defaults  0  0' >> ./ignore/.root/etc/fstab
 
 #Network-Manager, ignore eth1
-cp -v ./rootfs/etc/NetworkManager/conf.d/*.conf ./ignore/.root/etc/NetworkManager/conf.d/
+#cp -v ./rootfs/etc/NetworkManager/conf.d/*.conf ./ignore/.root/etc/NetworkManager/conf.d/
 
 cp -v ./ignore/.root/etc/bbb.io/templates/eth0-DHCP.network ./ignore/.root/etc/systemd/network/eth0.network || true
+cp -v ./ignore/.root/etc/bbb.io/templates/eth1-DHCP.network ./ignore/.root/etc/systemd/network/eth1.network || true
 
 # setuid root ping+ping6
 chmod u+s ./ignore/.root/usr/bin/ping ./ignore/.root/usr/bin/ping6
