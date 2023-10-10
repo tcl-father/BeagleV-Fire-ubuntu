@@ -3,9 +3,9 @@
 
 /dts-v1/;
 
+#include <dt-bindings/gpio/gpio.h>
 #include "mpfs.dtsi"
 #include "mpfs-beaglev-fire-fabric.dtsi"
-#include <dt-bindings/gpio/gpio.h>
 
 /* Clock frequency (in Hz) of the rtcclk */
 #define RTCCLK_FREQ		1000000
@@ -114,11 +114,14 @@
 		regulator-max-microvolt = <1200000>;
 	};
 
+
 	imx219_clk: camera-clk {
 		compatible = "fixed-clock";
 		#clock-cells = <0>;
 		clock-frequency = <24000000>;
 	};
+
+
 };
 
 &gpio0 {
@@ -132,18 +135,11 @@
 		output_high;
 		line-name = "SD_CARD_CS";
 	};
-
-	user_button {
-		gpio-hog;
-		gpios = <13 13>;
-		input;
-		line-name = "USER_BUTTON";
-	};
 };
 
 &gpio1 {
 	ngpios=<24>;
-	gpio-line-names = "", "", "", "", "", "", "", "", "", "", 
+	gpio-line-names = "", "", "", "", "", "", "", "", "", "",
 					  "", "", "", "", "", "", "", "", "", "",
 					  "ADC_IRQn", "", "", "USB_OCn";
 	status = "okay";
@@ -207,7 +203,8 @@
 &i2c1 {
 	status = "okay";
 	eeprom: eeprom@50 {
-		compatible = "at,24c32";
+		compatible = "atmel,24c32";
+		pagesize = <32>;
 		reg = <0x50>;
 	};
 
@@ -228,14 +225,15 @@
 			};
 		};
 	};
+
+
 };
 
 &mac0 {
 	dma-noncoherent;
+	status = "okay";
 	phy-mode = "sgmii";
 	phy-handle = <&phy0>;
-	status = "okay";
-
 	phy0: ethernet-phy@0 {
 		reg = <0>;
 	};
@@ -243,10 +241,9 @@
 
 &mac1 {
 	dma-noncoherent;
+	status = "okay";
 	phy-mode = "sgmii";
 	phy-handle = <&phy1>;
-	status = "okay";
-
 	phy1: ethernet-phy@0 {
 		reg = <0>;
 	};
@@ -296,6 +293,14 @@
 //&mmuart3 //{
 //	statu//s = "okay";
 //};//
+//
+//&mmuart4 {
+//	status = "okay";
+//};
+
+//&pcie {
+//	status = "okay";
+//};
 
 &qspi {
 	status = "okay";

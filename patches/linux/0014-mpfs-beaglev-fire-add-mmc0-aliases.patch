@@ -1,0 +1,25 @@
+From ef62b6373be63fd94291d8ee0b76efe1121c12d3 Mon Sep 17 00:00:00 2001
+From: Robert Nelson <robertcnelson@gmail.com>
+Date: Tue, 10 Oct 2023 10:58:39 -0500
+Subject: [PATCH 14/14] mpfs-beaglev-fire: add mmc0 aliases
+
+Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+---
+ arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
+index d954a5cc3063..ca7f789031b1 100644
+--- a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
++++ b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
+@@ -25,6 +25,7 @@ soc {
+ 	};
+ 
+ 	aliases {
++		mmc0 = &mmc;
+ 		ethernet0 = &mac1;
+ 		serial0 = &mmuart0;
+ 		serial1 = &mmuart1;
+-- 
+2.39.2
+

@@ -1,0 +1,26 @@
+From aa372dad67f6ebb5743821fb121b9534e9b36f67 Mon Sep 17 00:00:00 2001
+From: Robert Nelson <robertcnelson@gmail.com>
+Date: Tue, 10 Oct 2023 10:11:54 -0500
+Subject: [PATCH 10/10] mpfs-beaglev-fire: fix eeprom pagesize merge
+
+Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+---
+ arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
+index 4e4cf9673743..b4f1090f9664 100644
+--- a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
++++ b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
+@@ -210,7 +210,7 @@ &i2c1 {
+ 	status = "okay";
+ 	eeprom: eeprom@50 {
+ 		compatible = "atmel,24c32";
+-		reg = pagesize = <32>;
++		pagesize = <32>;
+ 		reg = <0x50>;
+ 	};
+ 
+-- 
+2.39.2
+

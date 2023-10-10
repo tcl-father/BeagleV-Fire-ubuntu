@@ -16,19 +16,25 @@ if [ ! -f ./.patched ] ; then
 		git am ../patches/linux/0006-BeagleV-Fire-Add-printk-to-IM219-driver-for-board-te.patch
 		git am ../patches/linux/0007-MMC-SPI-Hack-to-support-non-DMA-capable-SPI-ctrl.patch
 		git am ../patches/linux/0008-Add-wireless-regdb-regulatory-database-file.patch
+		git am ../patches/linux/0009-Makefile-build-mpfs-beaglev-fire.dtb.patch
+		git am ../patches/linux/0010-mpfs-beaglev-fire-fix-eeprom-pagesize-merge.patch
+		git am ../patches/linux/0011-mpfs-beaglev-fire-fabric-fix-old-merge-removing-gpio.patch
+		git am ../patches/linux/0012-mpfs-beaglev-fire-add-uart-i2c-symlinks-fix-old-merg.patch
+		git am ../patches/linux/0013-mpfs-beaglev-fire-drop-user_button.patch
+		git am ../patches/linux/0014-mpfs-beaglev-fire-add-mmc0-aliases.patch
 	fi
 	touch .patched
 fi
 
-if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
-	cp -v ../patches/linux/Makefile arch/riscv/boot/dts/microchip/Makefile
-	cp -v ../patches/linux/dts/mpfs-beaglev-fire.dts arch/riscv/boot/dts/microchip/
-	cp -v ../patches/linux/dts/mpfs-beaglev-fire-fabric.dtsi arch/riscv/boot/dts/microchip/
-else
-	cp -v ../patches/linux/mainline/Makefile arch/riscv/boot/dts/microchip/Makefile
-	cp -v ../patches/linux/mainline/dts/mpfs-beaglev-fire.dts arch/riscv/boot/dts/microchip/
-	cp -v ../patches/linux/mainline/dts/mpfs-beaglev-fire-fabric.dtsi arch/riscv/boot/dts/microchip/
-fi
+#if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
+#	cp -v ../patches/linux/Makefile arch/riscv/boot/dts/microchip/Makefile
+#	cp -v ../patches/linux/dts/mpfs-beaglev-fire.dts arch/riscv/boot/dts/microchip/
+#	cp -v ../patches/linux/dts/mpfs-beaglev-fire-fabric.dtsi arch/riscv/boot/dts/microchip/
+#else
+#	cp -v ../patches/linux/mainline/Makefile arch/riscv/boot/dts/microchip/Makefile
+#	cp -v ../patches/linux/mainline/dts/mpfs-beaglev-fire.dts arch/riscv/boot/dts/microchip/
+#	cp -v ../patches/linux/mainline/dts/mpfs-beaglev-fire-fabric.dtsi arch/riscv/boot/dts/microchip/
+#fi
 
 echo "make ARCH=riscv CROSS_COMPILE=${CC} clean"
 make ARCH=riscv CROSS_COMPILE=${CC} clean

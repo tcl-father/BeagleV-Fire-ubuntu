@@ -49,7 +49,7 @@ if [ -d ./linux ] ; then
 fi
 
 echo "git clone -b ${LINUX_BRANCH} ${LINUX_REPO} ./linux/ --depth=${GIT_DEPTH}"
-git clone -b ${LINUX_BRANCH} ${LINUX_REPO} ./linux/ --depth=${GIT_DEPTH}
+git clone --reference-if-able ~/linux-src/ -b ${LINUX_BRANCH} ${LINUX_REPO} ./linux/ --depth=${GIT_DEPTH}
 
 #BUILDROOT_BRANCH="bvf"
 #BUILDROOT_REPO="https://git.beagleboard.org/beaglev-fire/buildroot-external-microchip.git"

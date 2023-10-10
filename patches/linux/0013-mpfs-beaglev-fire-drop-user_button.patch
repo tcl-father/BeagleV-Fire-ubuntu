@@ -1,0 +1,31 @@
+From 6e60fa8df1c8c5aa5105c84b261973b815b3611c Mon Sep 17 00:00:00 2001
+From: Robert Nelson <robertcnelson@gmail.com>
+Date: Tue, 10 Oct 2023 10:43:53 -0500
+Subject: [PATCH 13/13] mpfs-beaglev-fire: drop user_button
+
+Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+---
+ arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts | 7 -------
+ 1 file changed, 7 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
+index 962d39a46050..d954a5cc3063 100644
+--- a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
++++ b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
+@@ -134,13 +134,6 @@ sd_card_cs {
+ 		output_high;
+ 		line-name = "SD_CARD_CS";
+ 	};
+-
+-	user_button {
+-		gpio-hog;
+-		gpios = <13 13>;
+-		input;
+-		line-name = "USER_BUTTON";
+-	};
+ };
+ 
+ &gpio1 {
+-- 
+2.39.2
+

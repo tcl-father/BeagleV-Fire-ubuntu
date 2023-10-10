@@ -6,6 +6,12 @@ CC=${CC:-"${wdir}/riscv-toolchain/bin/riscv64-linux-"}
 
 cd ./linux/
 
+#if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
+#	cp -v ../patches/linux/Makefile arch/riscv/boot/dts/microchip/Makefile
+#	cp -v ../patches/linux/dts/mpfs-beaglev-fire.dts arch/riscv/boot/dts/microchip/
+#	cp -v ../patches/linux/dts/mpfs-beaglev-fire-fabric.dtsi arch/riscv/boot/dts/microchip/
+#fi
+
 echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} Image modules dtbs"
 make -j${CORES} ARCH=riscv CROSS_COMPILE="ccache ${CC}" Image modules dtbs
 

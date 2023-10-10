@@ -1,0 +1,83 @@
+From fb1cbdba969522930a5320e14749333f22a5f1db Mon Sep 17 00:00:00 2001
+From: Robert Nelson <robertcnelson@gmail.com>
+Date: Tue, 10 Oct 2023 10:21:14 -0500
+Subject: [PATCH 11/11] mpfs-beaglev-fire-fabric: fix old merge removing
+ gpio/core_pwm
+
+Signed-off-by: Robert Nelson <robertcnelson@gmail.com>
+---
+ .../microchip/mpfs-beaglev-fire-fabric.dtsi   | 51 -------------------
+ 1 file changed, 51 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire-fabric.dtsi b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire-fabric.dtsi
+index 60ba0883aeb2..9737144e441a 100644
+--- a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire-fabric.dtsi
++++ b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire-fabric.dtsi
+@@ -16,15 +16,6 @@ fabric-bus@40000000 {
+ 			 <0x20 0x0 0x20 0x0 0x10 0x0>, /* FIC0,HI */
+ 			 <0x30 0x0 0x30 0x0 0x10 0x0>; /* FIC1,HI */
+ 
+-//		core_pwm0: pwm@40000000 {
+-//			compatible = "microchip,corepwm-rtl-v4";
+-//			reg = <0x0 0x40000000 0x0 0xF0>;
+-//			microchip,sync-update-mask = /bits/ 32 <0>;
+-//			#pwm-cells = <2>;
+-//			clocks = <&fabric_clk3>;
+-//			status = "disabled";
+-//		};
+-
+ 		fabric_clk3: fabric-clk3 {
+ 			compatible = "fixed-clock";
+ 			#clock-cells = <0>;
+@@ -36,48 +27,6 @@ fabric_clk1: fabric-clk1 {
+ 			#clock-cells = <0>;
+ 			clock-frequency = <125000000>;
+ 		};
+-
+-		cape_gpios_p8: gpio@41100000 {
+-			compatible = "microchip,core-gpio";
+-			reg = <0x0 0x41100000 0x0 0x1000>;
+-			clocks = <&fabric_clk3>;
+-			gpio-controller;
+-			#gpio-cells = <2>;
+-			ngpios=<16>;
+-			gpio-line-names = "P8_PIN31", "P8_PIN32", "P8_PIN33", "P8_PIN34",
+-			                  "P8_PIN35", "P8_PIN36", "P8_PIN37", "P8_PIN38",
+-			                  "P8_PIN39", "P8_PIN40", "P8_PIN41", "P8_PIN42",
+-							  "P8_PIN43", "P8_PIN44", "P8_PIN45", "P8_PIN46";
+-		};
+-
+-		cape_gpios_p9: gpio@41200000 {
+-			compatible = "microchip,core-gpio";
+-			reg = <0x0 0x41200000 0x0 0x1000>;
+-			clocks = <&fabric_clk3>;
+-			gpio-controller;
+-			#gpio-cells = <2>;
+-			ngpios=<21>;
+-			gpio-line-names = "P9_PIN11", "P9_PIN12", "P9_PIN13", "P9_PIN14",
+-			                  "P9_PIN15", "P9_PIN16", "P9_PIN17", "P9_PIN18",
+-			                  "P9_PIN21", "P9_PIN22", "P9_PIN23", "P9_PIN24",
+-			                  "P9_PIN25", "P9_PIN26", "P9_PIN27", "P9_PIN28",
+-							  "P9_PIN29", "P9_PIN31", "P9_PIN41", "P9_PIN42";
+-		};
+-
+-		hsi_gpios: gpio@44000000 {
+-			compatible = "microchip,core-gpio";
+-			reg = <0x0 0x44000000 0x0 0x1000>;
+-			clocks = <&fabric_clk3>;
+-			gpio-controller;
+-			#gpio-cells = <2>;
+-			ngpios=<20>;
+-			gpio-line-names = "B0_HSIO70N", "B0_HSIO71N", "B0_HSIO83N", "B0_HSIO73N_C2P_CLKN",
+-			                  "B0_HSIO70P", "B0_HSIO71P", "B0_HSIO83P", "B0_HSIO73N_C2P_CLKP",
+-			                  "XCVR1_RX_VALID", "XCVR1_LOCK", "XCVR1_ERROR",
+-							  "XCVR2_RX_VALID", "XCVR2_LOCK", "XCVR2_ERROR",
+-							  "XCVR3_RX_VALID", "XCVR3_LOCK", "XCVR3_ERROR",
+-							  "XCVR_0B_REF_CLK_PLL_LOCK", "XCVR_0C_REF_CLK_PLL_LOCK", "B0_HSIO81N";
+-		};
+ 	};
+ 
+ 	ihc: mailbox {
+-- 
+2.39.2
+
