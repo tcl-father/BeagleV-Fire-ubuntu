@@ -374,9 +374,9 @@
 };
 
 // UARTs
-bone_uart_4: &mmuart4 {
-	symlink = "bone/uart/4";
-};
+//bone_uart_4: &mmuart4 {
+//	symlink = "bone/uart/4";
+//};
 
 // I2Cs 
 bone_i2c_2: &i2c0 {
