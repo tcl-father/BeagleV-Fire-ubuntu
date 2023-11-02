@@ -17,3 +17,4 @@ deploy/ubuntu*
 /u-boot/
 /linux/
 /gateware-snapshots/
+/device-tree/

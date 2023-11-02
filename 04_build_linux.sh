@@ -8,7 +8,6 @@ cd ./linux/
 
 if [ ! -f ./.patched ] ; then
 	if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
-		git am ../patches/linux/0001-Add-BeagleV-Fire-device-tree.patch
 		git am ../patches/linux/0002-PCIe-Change-controller-and-bridge-base-address.patch
 		git am ../patches/linux/0003-GPIO-Add-Microchip-CoreGPIO-driver.patch
 		git am ../patches/linux/0004-ADC-Add-Microchip-MCP356X-driver.patch
@@ -17,24 +16,24 @@ if [ ! -f ./.patched ] ; then
 		git am ../patches/linux/0007-MMC-SPI-Hack-to-support-non-DMA-capable-SPI-ctrl.patch
 		git am ../patches/linux/0008-Add-wireless-regdb-regulatory-database-file.patch
 		git am ../patches/linux/0009-Makefile-build-mpfs-beaglev-fire.dtb.patch
-		git am ../patches/linux/0010-mpfs-beaglev-fire-fix-eeprom-pagesize-merge.patch
-		git am ../patches/linux/0011-mpfs-beaglev-fire-fabric-fix-old-merge-removing-gpio.patch
-		git am ../patches/linux/0012-mpfs-beaglev-fire-add-uart-i2c-symlinks-fix-old-merg.patch
-		git am ../patches/linux/0013-mpfs-beaglev-fire-drop-user_button.patch
-		git am ../patches/linux/0014-mpfs-beaglev-fire-add-mmc0-aliases.patch
 	fi
 	touch .patched
 fi
 
-#if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
+if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
 #	cp -v ../patches/linux/Makefile arch/riscv/boot/dts/microchip/Makefile
-#	cp -v ../patches/linux/dts/mpfs-beaglev-fire.dts arch/riscv/boot/dts/microchip/
-#	cp -v ../patches/linux/dts/mpfs-beaglev-fire-fabric.dtsi arch/riscv/boot/dts/microchip/
+	cp -v ../device-tree/src/microchip/mpfs-beaglev-fire.dts arch/riscv/boot/dts/microchip/
+	cp -v ../device-tree/src/microchip/mpfs-beaglev-fire-fabric.dtsi arch/riscv/boot/dts/microchip/
+	#echo "************************************"
+	#git diff arch/riscv/boot/dts/microchip/ > log.txt ; cat log.txt ; rm log.txt
+	#echo "************************************"
+	#echo "Current Device Tree Changes (5 second wait)"
+	#sleep 5
 #else
 #	cp -v ../patches/linux/mainline/Makefile arch/riscv/boot/dts/microchip/Makefile
 #	cp -v ../patches/linux/mainline/dts/mpfs-beaglev-fire.dts arch/riscv/boot/dts/microchip/
 #	cp -v ../patches/linux/mainline/dts/mpfs-beaglev-fire-fabric.dtsi arch/riscv/boot/dts/microchip/
-#fi
+fi
 
 echo "make ARCH=riscv CROSS_COMPILE=${CC} clean"
 make ARCH=riscv CROSS_COMPILE=${CC} clean
