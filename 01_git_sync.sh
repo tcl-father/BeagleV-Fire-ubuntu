@@ -12,6 +12,10 @@ UBOOT_REPO="https://github.com/polarfire-soc/u-boot.git"
 #UBOOT_REPO="https://git.beagleboard.org/beaglev-fire/beaglev-fire-u-boot.git"
 #UBOOT_REPO="git@git.beagleboard.org:beaglev-fire/beaglev-fire-u-boot.git"
 
+DT_BRANCH="v6.1.x-Beagle"
+DT_REPO="https://git.beagleboard.org/beagleboard/BeagleBoard-DeviceTrees.git"
+#DT_REPO="git@git.beagleboard.org:beagleboard/BeagleBoard-DeviceTrees.git"
+
 LINUX_BRANCH="linux4microchip+fpga-2023.06"
 LINUX_REPO="https://github.com/linux4microchip/linux.git"
 #LINUX_REPO="https://git.beagleboard.org/beaglev-fire/beaglev-fire-linux.git"
@@ -43,6 +47,13 @@ fi
 
 echo "git clone -b ${UBOOT_BRANCH} ${UBOOT_REPO} ./u-boot/ --depth=${GIT_DEPTH}"
 git clone -b ${UBOOT_BRANCH} ${UBOOT_REPO} ./u-boot/ --depth=${GIT_DEPTH}
+
+if [ -d ./device-tree ] ; then
+	rm -rf ./device-tree || true
+fi
+
+echo "git clone -b ${DT_BRANCH} ${DT_REPO} ./device-tree/ --depth=${GIT_DEPTH}"
+git clone -b ${DT_BRANCH} ${DT_REPO} ./device-tree/ --depth=${GIT_DEPTH}
 
 if [ -d ./linux ] ; then
 	rm -rf ./linux || true
