@@ -6,17 +6,6 @@ CC=${CC:-"${wdir}/riscv-toolchain/bin/riscv64-linux-"}
 
 make -C u-boot ARCH=riscv CROSS_COMPILE=${CC} distclean
 
-cd ./u-boot/
-#cp -v include/configs/microchip_mpfs_icicle.h ../patches/u-boot/original/
-#cp -v arch/riscv/dts/microchip-mpfs-icicle-kit.dts ../patches/u-boot/original/
-#cp -v configs/microchip_mpfs_icicle_defconfig ../patches/u-boot/original/
-#exit 2
-
-cp -v ../patches/u-boot/beaglev-fire/microchip_mpfs_icicle.h include/configs/microchip_mpfs_icicle.h
-cp -v ../patches/u-boot/beaglev-fire/microchip-mpfs-icicle-kit.dts arch/riscv/dts/
-cp -v ../patches/u-boot/beaglev-fire/microchip_mpfs_icicle_defconfig configs/microchip_mpfs_icicle_defconfig
-cd ../
-
 make -C u-boot ARCH=riscv CROSS_COMPILE=${CC} microchip_mpfs_icicle_defconfig
 #make -C u-boot ARCH=riscv CROSS_COMPILE=${CC} menuconfig
 
