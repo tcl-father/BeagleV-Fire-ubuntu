@@ -46,6 +46,8 @@ build:
       - "deploy/sdcard.img.xz"
       - "deploy/sdcard.bmap"
       - "deploy/readme.md"
+      - "deploy/beaglev_fire.itb"
+      - "deploy/modules.tar.gz"
 
 pages:
   tags:
