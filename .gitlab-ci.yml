@@ -3,7 +3,7 @@ image: robertcnelson/beagle-devscripts-kernel-debian-12-amd64:latest
 
 before_script:
   - apt-get update -q
-  - apt-get install -y -q bc bison cpio debhelper flex kmod libelf-dev libssl-dev lz4
+  - apt-get install -y -q bc bison cpio debhelper flex kmod libelf-dev libssl-dev libyaml-dev lz4
 
 variables:
   FF_USE_FASTZIP: "true"
