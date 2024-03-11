@@ -3,7 +3,7 @@ image: robertcnelson/beagle-devscripts-kernel-debian-12-amd64:latest
 
 before_script:
   - apt-get update -q
-  - apt-get install -y -q bc bison bmap-tools cpio debhelper flex genimage kmod libelf-dev libssl-dev libyaml-dev lz4 mtools
+  - apt-get install -y -q bc bison bmap-tools cpio debhelper dosfstools flex genimage kmod libelf-dev libssl-dev libyaml-dev lz4 mtools
 
 variables:
   FF_USE_FASTZIP: "true"
