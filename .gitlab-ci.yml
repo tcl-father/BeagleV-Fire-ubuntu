@@ -1,5 +1,9 @@
 image: robertcnelson/debian-bookworm-slim-riscv:latest
 
+variables:
+  FF_USE_FASTZIP: "true"
+  CACHE_COMPRESSION_LEVEL: "fast"
+
 cache:
   key: "$CI_PROJECT_NAME"
   paths:
@@ -40,3 +44,18 @@ build:
       - "deploy/readme.md"
       - "deploy/beaglev_fire.itb"
       - "deploy/modules.tar.gz"
+
+pages:
+  tags:
+    - docker-amd64
+  stage: pages
+  script:
+    - mkdir -p ./public/ || true
+    - cp -v ./deploy/ ./public/
+    - apindex public
+  artifacts:
+    when: on_success
+    paths:
+      - public
+  only:
+  - main
