@@ -1,4 +1,9 @@
-image: robertcnelson/debian-bookworm-slim-riscv:latest
+image: robertcnelson/beagle-devscripts-debian-12-arm64:latest
+# https://git.beagleboard.org/beagleboard/ci-docker-images
+
+before_script:
+  - apt-get update -q
+  - apt-get install -y -q bc bison cpio debhelper flex kmod libelf-dev libssl-dev lz4
 
 variables:
   FF_USE_FASTZIP: "true"
@@ -8,7 +13,7 @@ cache:
   key: "$CI_PROJECT_NAME"
   paths:
     - mirror/x86_64-gcc-*-linux.tar.xz
-    - ccache.tar.gz
+    - ccache.tar.lz4
 
 build:
   tags:
@@ -20,12 +25,11 @@ build:
     - ./02_build_hss.sh
     - ./03_build_u-boot.sh
     - mkdir -p /root/.cache/ccache/ || true
-    - ccache -s
-    - tar -xf ccache.tar.gz -C / || true
+    - time tar --use-compress-program=lz4 -xf ccache.tar.lz4 -C / || true
     - ccache -s
     - ./04_build_linux.sh
     - ccache -s
-    - tar -cf ccache.tar.gz /root/.cache/ccache/
+    - time tar --use-compress-program=lz4 -cf ccache.tar.lz4 /root/.cache/ccache/
     - ./05_generate_payload.bin.sh
     - ./06_generate_ubuntu_console_root.sh
     - ./07_create_sdcard_img.sh
