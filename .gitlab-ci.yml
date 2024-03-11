@@ -48,10 +48,10 @@ build:
 pages:
   tags:
     - docker-amd64
-  stage: pages
+  stage: deploy
   script:
     - mkdir -p ./public/ || true
-    - cp -v ./deploy/ ./public/
+    - cp -v ./deploy/* ./public/
     - apindex public
   artifacts:
     when: on_success
