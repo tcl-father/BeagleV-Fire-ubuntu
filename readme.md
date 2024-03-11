@@ -62,6 +62,14 @@ Use Balena or:
 sudo bmaptool copy sdcard.img /dev/sde
 ```
 
+# Deploy Kernel Updates
+
+```
+wget https://beaglev-fire.beagleboard.io/BeagleV-Fire-ubuntu/get_kernel_update.sh
+chmod +x ./get_kernel_update.sh
+sudo ./get_kernel_update.sh
+```
+
 # Notes
 
 ```
