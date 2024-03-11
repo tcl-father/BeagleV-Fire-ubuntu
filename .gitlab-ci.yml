@@ -55,7 +55,9 @@ pages:
   stage: deploy
   script:
     - mkdir -p ./public/ || true
-    - cp -v ./deploy/* ./public/
+    - cp -v ./deploy/beaglev_fire.itb ./public/
+    - cp -v ./deploy/modules.tar.gz ./public/
+    - cp -v ./get_kernel_update.sh ./public/
     - apindex public
   artifacts:
     when: on_success
