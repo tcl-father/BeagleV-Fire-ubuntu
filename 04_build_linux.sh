@@ -46,6 +46,9 @@ if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
 
 	./scripts/config --set-str CONFIG_LOCALVERSION "-$(date +%Y%m%d)"
 
+	./scripts/config --enable CONFIG_OF_OVERLAY
+	./scripts/config --enable CONFIG_MODULE_COMPRESS_ZSTD
+
 	./scripts/config --enable CONFIG_CRYPTO_USER_API_HASH
 	./scripts/config --enable CONFIG_CRYPTO_USER_API_SKCIPHER
 	./scripts/config --enable CONFIG_KEY_DH_OPERATIONS
@@ -70,6 +73,7 @@ else
 	./scripts/config --enable CONFIG_PCIE_MICROCHIP_HOST
 
 	./scripts/config --enable CONFIG_OF_OVERLAY
+	./scripts/config --enable CONFIG_MODULE_COMPRESS_ZSTD
 
 	./scripts/config --enable CONFIG_I2C
 	./scripts/config --enable CONFIG_EEPROM_AT24
