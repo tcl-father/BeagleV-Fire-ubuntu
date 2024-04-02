@@ -10,17 +10,17 @@ HSS_REPO="https://github.com/polarfire-soc/hart-software-services.git"
 #UBOOT_BRANCH="linux4microchip+fpga-2023.02"
 #UBOOT_REPO="https://github.com/polarfire-soc/u-boot.git"
 UBOOT_BRANCH="v2023.02-BeagleV-Fire"
-UBOOT_REPO="https://git.beagleboard.org/beaglev-fire/beaglev-fire-u-boot.git"
-#UBOOT_REPO="git@git.beagleboard.org:beaglev-fire/beaglev-fire-u-boot.git"
+UBOOT_REPO="https://openbeagle.org/beaglev-fire/beaglev-fire-u-boot.git"
+#UBOOT_REPO="git@openbeagle.org:beaglev-fire/beaglev-fire-u-boot.git"
 
 DT_BRANCH="v6.1.x-Beagle"
-DT_REPO="https://git.beagleboard.org/beagleboard/BeagleBoard-DeviceTrees.git"
-#DT_REPO="git@git.beagleboard.org:beagleboard/BeagleBoard-DeviceTrees.git"
+DT_REPO="https://openbeagle.org/beagleboard/BeagleBoard-DeviceTrees.git"
+#DT_REPO="git@openbeagle.org:beagleboard/BeagleBoard-DeviceTrees.git"
 
 LINUX_BRANCH="linux4microchip+fpga-2023.06"
 LINUX_REPO="https://github.com/linux4microchip/linux.git"
-#LINUX_REPO="https://git.beagleboard.org/beaglev-fire/beaglev-fire-linux.git"
-#LINUX_REPO="git@git.beagleboard.org:beaglev-fire/beaglev-fire-linux.git"
+#LINUX_REPO="https://openbeagle.org/beaglev-fire/beaglev-fire-linux.git"
+#LINUX_REPO="git@openbeagle.org:beaglev-fire/beaglev-fire-linux.git"
 
 #LINUX_BRANCH="master"
 #LINUX_REPO="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git"
@@ -64,7 +64,7 @@ echo "git clone -b ${LINUX_BRANCH} ${LINUX_REPO} ./linux/ --depth=${GIT_DEPTH}"
 git clone --reference-if-able ~/linux-src/ -b ${LINUX_BRANCH} ${LINUX_REPO} ./linux/ --depth=${GIT_DEPTH}
 
 #BUILDROOT_BRANCH="bvf"
-#BUILDROOT_REPO="https://git.beagleboard.org/beaglev-fire/buildroot-external-microchip.git"
+#BUILDROOT_REPO="https://openbeagle.org/beaglev-fire/buildroot-external-microchip.git"
 #
 #if [ -d ./buildroot ] ; then
 	#rm -rf ./buildroot || true
