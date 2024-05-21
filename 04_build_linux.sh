@@ -47,7 +47,15 @@ if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
 	./scripts/config --set-str CONFIG_LOCALVERSION "-$(date +%Y%m%d)"
 
 	./scripts/config --enable CONFIG_OF_OVERLAY
-	./scripts/config --enable CONFIG_MODULE_COMPRESS_ZSTD
+	./scripts/config --disable CONFIG_MODULE_DECOMPRESS
+
+	#enable CONFIG_DYNAMIC_FTRACE
+	./scripts/config --enable CONFIG_FUNCTION_TRACER
+	./scripts/config --enable CONFIG_DYNAMIC_FTRACE
+
+	./scripts/config --disable CONFIG_MODULE_COMPRESS_ZSTD
+	./scripts/config --enable CONFIG_MODULE_COMPRESS_XZ
+	./scripts/config --enable CONFIG_GPIO_AGGREGATOR
 
 	./scripts/config --enable CONFIG_CRYPTO_USER_API_HASH
 	./scripts/config --enable CONFIG_CRYPTO_USER_API_SKCIPHER
