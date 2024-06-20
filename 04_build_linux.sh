@@ -16,6 +16,7 @@ if [ ! -f ./.patched ] ; then
 		git am ../patches/linux/0007-MMC-SPI-Hack-to-support-non-DMA-capable-SPI-ctrl.patch
 		git am ../patches/linux/0008-Add-wireless-regdb-regulatory-database-file.patch
 		git am ../patches/linux/0009-Makefile-build-mpfs-beaglev-fire.dtb.patch
+		git am ../patches/linux/0010-BeagleV-Fire-Add-MPFS-TVS-auxiliary-driver.patch
 	fi
 	touch .patched
 fi
@@ -71,6 +72,8 @@ if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
 	./scripts/config --enable CONFIG_CRYPTO_HMAC
 	./scripts/config --enable CONFIG_CRYPTO_SHA512
 	./scripts/config --enable CONFIG_CRYPTO_SHA1
+
+	./scripts/config --enable CONFIG_SENSORS_TVS_MPFS
 
 	echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig"
 	make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig
