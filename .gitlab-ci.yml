@@ -1,9 +1,9 @@
 image: robertcnelson/beagle-devscripts-kernel-debian-12-amd64:latest
-# https://git.beagleboard.org/beagleboard/ci-docker-images
+# https://openbeagle.org/beagleboard/ci-docker-images
 
 before_script:
   - apt-get update -q
-  - apt-get install -y -q bc bison bmap-tools cpio debhelper dosfstools flex genimage kmod libelf-dev libssl-dev libyaml-dev lz4 mtools
+  - apt-get install -yq bc bison bmap-tools cpio debhelper dosfstools flex genimage kmod libelf-dev libssl-dev libyaml-dev lz4 mtools
 
 variables:
   FF_USE_FASTZIP: "true"
@@ -37,8 +37,6 @@ build:
     - tree -s deploy/
     - cp -v deploy/images/sdcard.img.xz ./deploy/
     - cp -v deploy/images/sdcard.bmap ./deploy/
-    - cp -v deploy/input/beaglev_fire.itb ./deploy/
-    - cp -v deploy/*-modules.tar.gz ./deploy/modules.tar.gz
   artifacts:
     expire_in: 28 days
     name: "$CI_PROJECT_NAME-$CI_JOB_ID"
@@ -46,22 +44,3 @@ build:
       - "deploy/sdcard.img.xz"
       - "deploy/sdcard.bmap"
       - "deploy/readme.md"
-      - "deploy/beaglev_fire.itb"
-      - "deploy/modules.tar.gz"
-
-pages:
-  tags:
-    - docker-amd64
-  stage: deploy
-  script:
-    - mkdir -p ./public/ || true
-    - cp -v ./deploy/beaglev_fire.itb ./public/
-    - cp -v ./deploy/modules.tar.gz ./public/
-    - cp -v ./get_kernel_update.sh ./public/
-    - apindex public
-  artifacts:
-    when: on_success
-    paths:
-      - public
-  only:
-  - main
