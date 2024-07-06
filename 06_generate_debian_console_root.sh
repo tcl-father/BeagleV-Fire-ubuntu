@@ -55,7 +55,7 @@ echo "    #fdtoverlays /overlays/<file>.dtbo" >> ./deploy/input/extlinux.conf
 
 mkdir -p ./ignore/.root/boot/firmware/ || true
 
-echo '/dev/mmcblk0p2  /boot/firmware/ auto  defaults  0  2' >> ./ignore/.root/etc/fstab
+echo '/dev/mmcblk0p2  /boot/firmware/  vfat  user,uid=1000,gid=1000,defaults  0  2' >> ./ignore/.root/etc/fstab
 echo '/dev/mmcblk0p3  /  auto  errors=remount-ro  0  1' >> ./ignore/.root/etc/fstab
 echo 'debugfs  /sys/kernel/debug  debugfs  mode=755,uid=root,gid=gpio,defaults  0  0' >> ./ignore/.root/etc/fstab
 
