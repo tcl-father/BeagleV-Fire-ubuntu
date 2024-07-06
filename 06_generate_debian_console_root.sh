@@ -42,6 +42,7 @@ sync
 
 mkdir -p ./deploy/input/ || true
 cp -v ./deploy/boot.scr deploy/input/
+cp -v ./deploy/sysconf.txt deploy/input/
 
 echo "label Linux eMMC" > ./deploy/input/extlinux.conf
 echo "    kernel /Image" >> ./deploy/input/extlinux.conf
