@@ -1,0 +1,25 @@
+From ff3af0236730758e918a3d6c090bb78ce03aedcf Mon Sep 17 00:00:00 2001
+From: Lars Randers <lranders@mail.dk>
+Date: Mon, 28 Oct 2024 11:46:26 +0000
+Subject: [PATCH] can: mpfs_can: add registration string
+
+Signed-off-by: Lars Randers <lranders@mail.dk>
+---
+ drivers/net/can/mpfs_can.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/net/can/mpfs_can.c b/drivers/net/can/mpfs_can.c
+index f741af2c0..0e0aa2384 100644
+--- a/drivers/net/can/mpfs_can.c
++++ b/drivers/net/can/mpfs_can.c
+@@ -913,6 +913,7 @@ static int mpfs_can_probe(struct platform_device *pdev)
+ 		   priv->reg, ndev->irq, priv->can.clock.freq,
+ 		   priv->tx_max);
+ 
++	dev_info(&pdev->dev, "Registered MPFS CAN controller %s\n", ndev->name);
+ 	return 0;
+ 
+ err:
+-- 
+2.39.2
+

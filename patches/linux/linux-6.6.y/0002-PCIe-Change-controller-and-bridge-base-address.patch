@@ -1,17 +1,17 @@
-From 8911855f7b07ba7f592f73850e551802ae40601d Mon Sep 17 00:00:00 2001
+From 4c14a137c399cbdb29d121b6dcdc395976e38579 Mon Sep 17 00:00:00 2001
 From: vauban353 <vauban353@gmail.com>
-Date: Sat, 5 Nov 2022 17:47:50 +0000
-Subject: [PATCH 2/8] PCIe: Change controller and bridge base address.
+Date: Fri, 25 Oct 2024 09:17:26 +0000
+Subject: [PATCH] PCIe: Change controller and bridge base address.
 
 ---
  drivers/pci/controller/pcie-microchip-host.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/pci/controller/pcie-microchip-host.c b/drivers/pci/controller/pcie-microchip-host.c
-index 56306f514..b1b3b7820 100644
+index 4030a2bb0..1aa8aca7e 100644
 --- a/drivers/pci/controller/pcie-microchip-host.c
 +++ b/drivers/pci/controller/pcie-microchip-host.c
-@@ -26,8 +26,8 @@
+@@ -27,8 +27,8 @@
  #define MC_ATT_MASK				GENMASK_ULL(63, 31)
  
  /* PCIe Bridge Phy and Controller Phy offsets */
@@ -20,8 +20,8 @@ index 56306f514..b1b3b7820 100644
 +#define MC_PCIE1_BRIDGE_ADDR			0x00004000u
 +#define MC_PCIE1_CTRL_ADDR			0x00006000u
  
- #define MC_PCIE_BRIDGE_ADDR			(MC_PCIE1_BRIDGE_ADDR)
- #define MC_PCIE_CTRL_ADDR			(MC_PCIE1_CTRL_ADDR)
+ /* PCIe Bridge Phy Regs */
+ #define PCIE_PCI_IRQ_DW0			0xa8
 -- 
 2.39.2
 
