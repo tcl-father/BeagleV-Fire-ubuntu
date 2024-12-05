@@ -8,23 +8,19 @@ cd ./linux/
 
 if [ ! -f ./.patched ] ; then
 	if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
-		git am ../patches/linux/0002-PCIe-Change-controller-and-bridge-base-address.patch
-		git am ../patches/linux/0003-GPIO-Add-Microchip-CoreGPIO-driver.patch
-		git am ../patches/linux/0004-ADC-Add-Microchip-MCP356X-driver.patch
-		git am ../patches/linux/0005-Microchip-QSPI-Add-regular-transfers.patch
-		git am ../patches/linux/0006-BeagleV-Fire-Add-printk-to-IM219-driver-for-board-te.patch
-		git am ../patches/linux/0007-MMC-SPI-Hack-to-support-non-DMA-capable-SPI-ctrl.patch
+		git am ../patches/linux/linux-6.6.y/0002-PCIe-Change-controller-and-bridge-base-address.patch
 		git am ../patches/linux/0008-Add-wireless-regdb-regulatory-database-file.patch
-		git am ../patches/linux/0009-Makefile-build-mpfs-beaglev-fire.dtb.patch
-		git am ../patches/linux/0010-BeagleV-Fire-Add-MPFS-TVS-auxiliary-driver.patch
+		git am ../patches/linux/linux-6.6.y/0011-can-mpfs_can-add-registration-string.patch
+		git am ../patches/linux/linux-6.6.y/0012-gpio-gpio-mpfs-add-registration-string.patch
 	fi
 	touch .patched
 fi
 
 if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
 #	cp -v ../patches/linux/Makefile arch/riscv/boot/dts/microchip/Makefile
-	cp -v ../device-tree/src/microchip/mpfs-beaglev-fire.dts arch/riscv/boot/dts/microchip/
-	cp -v ../device-tree/src/microchip/mpfs-beaglev-fire-fabric.dtsi arch/riscv/boot/dts/microchip/
+	cp -v ../device-tree/src/riscv/microchip/mpfs-beaglev-fire.dts arch/riscv/boot/dts/microchip/
+	cp -v ../device-tree/src/riscv/microchip/mpfs-beaglev-fire-fabric.dtsi arch/riscv/boot/dts/microchip/
+	cp -v ../device-tree/src/riscv/microchip/mpfs-beaglev-fire-pinmux.dtsi arch/riscv/boot/dts/microchip/
 	#echo "************************************"
 	#git diff arch/riscv/boot/dts/microchip/ > log.txt ; cat log.txt ; rm log.txt
 	#echo "************************************"
@@ -46,6 +42,17 @@ if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
 	make ARCH=riscv CROSS_COMPILE=${CC} mpfs_defconfig
 
 	./scripts/config --set-str CONFIG_LOCALVERSION "-$(date +%Y%m%d)"
+
+	#6.1 to 6.6 switches
+	./scripts/config --disable CONFIG_FW_LOADER_DEBUG
+	./scripts/config --disable CONFIG_FW_CACHE
+	./scripts/config --enable CONFIG_MFD_SYSCON
+	./scripts/config --enable CONFIG_POLARFIRE_SOC_SYS_CTRL
+	./scripts/config --enable CONFIG_POLARFIRE_SOC_GENERIC_SERVICE
+	./scripts/config --enable CONFIG_POLARFIRE_SOC_MAILBOX
+	./scripts/config --enable CONFIG_POLARFIRE_SOC_AUTO_UPDATE
+	./scripts/config --enable CONFIG_HW_RANDOM_POLARFIRE_SOC
+
 
 	./scripts/config --enable CONFIG_OF_OVERLAY
 	./scripts/config --disable CONFIG_MODULE_DECOMPRESS
@@ -73,7 +80,12 @@ if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
 	./scripts/config --enable CONFIG_CRYPTO_SHA512
 	./scripts/config --enable CONFIG_CRYPTO_SHA1
 
-	./scripts/config --enable CONFIG_SENSORS_TVS_MPFS
+	./scripts/config --enable CONFIG_SENSORS_POLARFIRE_SOC_TVS
+	./scripts/config --module CONFIG_CAN
+	./scripts/config --module CONFIG_CAN_POLARFIRE_SOC
+
+	#non-workable on RevA
+	./scripts/config --disable CONFIG_VIDEO_IMX219
 
 	echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig"
 	make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig
@@ -160,8 +172,8 @@ else
 	make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig
 fi
 
-echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} Image modules dtbs"
-make -j${CORES} ARCH=riscv CROSS_COMPILE="ccache ${CC}" Image modules dtbs
+echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} DTC_FLAGS=\"-@\" Image modules dtbs"
+make -j${CORES} ARCH=riscv CROSS_COMPILE="ccache ${CC}" DTC_FLAGS="-@" Image modules dtbs
 
 if [ ! -f ./arch/riscv/boot/Image ] ; then
 	echo "Build Failed"

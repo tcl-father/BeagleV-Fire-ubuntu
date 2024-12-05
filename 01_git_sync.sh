@@ -13,11 +13,11 @@ UBOOT_BRANCH="v2023.02-BeagleV-Fire"
 UBOOT_REPO="https://openbeagle.org/beaglev-fire/beaglev-fire-u-boot.git"
 #UBOOT_REPO="git@openbeagle.org:beaglev-fire/beaglev-fire-u-boot.git"
 
-DT_BRANCH="v6.1.x-Beagle"
+DT_BRANCH="v6.6.x-Beagle"
 DT_REPO="https://openbeagle.org/beagleboard/BeagleBoard-DeviceTrees.git"
 #DT_REPO="git@openbeagle.org:beagleboard/BeagleBoard-DeviceTrees.git"
 
-LINUX_BRANCH="linux4microchip+fpga-2023.06"
+LINUX_BRANCH="linux4microchip+fpga-2024.09"
 LINUX_REPO="https://github.com/linux4microchip/linux.git"
 #LINUX_REPO="https://openbeagle.org/beaglev-fire/beaglev-fire-linux.git"
 #LINUX_REPO="git@openbeagle.org:beaglev-fire/beaglev-fire-linux.git"
