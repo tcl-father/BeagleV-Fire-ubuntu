@@ -87,6 +87,10 @@ if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
 	#non-workable on RevA
 	./scripts/config --disable CONFIG_VIDEO_IMX219
 
+	./scripts/config --enable CONFIG_FW_LOADER_COMPRESS
+	./scripts/config --enable CONFIG_FW_LOADER_COMPRESS_XZ
+	./scripts/config --enable CONFIG_FW_LOADER_COMPRESS_ZSTD
+
 	echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig"
 	make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig
 else
