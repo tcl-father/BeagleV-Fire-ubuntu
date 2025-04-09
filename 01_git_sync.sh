@@ -17,7 +17,7 @@ DT_BRANCH="v6.6.x-Beagle"
 DT_REPO="https://openbeagle.org/beagleboard/BeagleBoard-DeviceTrees.git"
 #DT_REPO="git@openbeagle.org:beagleboard/BeagleBoard-DeviceTrees.git"
 
-LINUX_BRANCH="linux4microchip+fpga-2024.09"
+LINUX_BRANCH="linux4microchip+fpga-2025.03"
 LINUX_REPO="https://github.com/linux4microchip/linux.git"
 #LINUX_REPO="https://openbeagle.org/beaglev-fire/beaglev-fire-linux.git"
 #LINUX_REPO="git@openbeagle.org:beaglev-fire/beaglev-fire-linux.git"
