@@ -8,7 +8,6 @@ cd ./linux/
 
 if [ ! -f ./.patched ] ; then
 	if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
-		git am ../patches/linux/linux-6.6.y/0002-PCIe-Change-controller-and-bridge-base-address.patch
 		git am ../patches/linux/0008-Add-wireless-regdb-regulatory-database-file.patch
 		git am ../patches/linux/linux-6.6.y/0011-can-mpfs_can-add-registration-string.patch
 		git am ../patches/linux/linux-6.6.y/0012-gpio-gpio-mpfs-add-registration-string.patch
