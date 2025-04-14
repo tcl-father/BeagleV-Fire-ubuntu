@@ -5,7 +5,7 @@ before_script:
   - apt-get dist-upgrade -yq
   - apt-get install -yq bc bison bmap-tools cpio debhelper dosfstools flex genimage kmod libelf-dev libssl-dev libyaml-dev lz4 mtools
 
-build-ubuntu-2404-riscv64:
+build-v6.6-ubuntu-2404-riscv64:
   image: robertcnelson/beagle-devscripts-kernel-debian-12-amd64:latest
   # https://openbeagle.org/beagleboard/ci-docker-images
   cache:
