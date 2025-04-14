@@ -1,29 +1,24 @@
-image: robertcnelson/beagle-devscripts-kernel-debian-12-amd64:latest
-# https://openbeagle.org/beagleboard/ci-docker-images
-
 before_script:
   - export PATH=/usr/lib/ccache:$PATH
   - echo "Acquire::http::Proxy \"http://192.168.1.10:3142\";" > /etc/apt/apt.conf.d/00aptproxy
   - apt-get update
-  - apt-get upgrade -yq
   - apt-get dist-upgrade -yq
   - apt-get install -yq bc bison bmap-tools cpio debhelper dosfstools flex genimage kmod libelf-dev libssl-dev libyaml-dev lz4 mtools
 
-variables:
-  FF_USE_FASTZIP: "true"
-  CACHE_COMPRESSION_LEVEL: "fast"
-
-cache:
-  key: "$CI_PROJECT_NAME-main"
-  paths:
-    - mirror/x86_64-gcc-*-linux.tar.xz
-    - ccache.tar.lz4
-
-build:
+build-ubuntu-2404-riscv64:
+  image: robertcnelson/beagle-devscripts-kernel-debian-12-amd64:latest
+  # https://openbeagle.org/beagleboard/ci-docker-images
+  cache:
+    key: "$CI_PROJECT_NAME-v6.6-ubuntu-2404-riscv64"
+    paths:
+      - mirror/x86_64-gcc-*-linux.tar.xz
+      - ccache.tar.lz4
   tags:
     - docker-amd64
   stage: build
   script:
+    - git config --global user.email "$GITLAB_USER_EMAIL"
+    - git config --global user.name "$GITLAB_USER_NAME"
     - touch .gitlab-runner
     - ./01_git_sync.sh
     - ./02_build_hss.sh
@@ -44,7 +39,7 @@ build:
     - cp -v deploy/images/sdcard.bmap ./deploy/
   artifacts:
     expire_in: 28 days
-    name: "$CI_PROJECT_NAME-main-$CI_JOB_ID"
+    name: "$CI_PROJECT_NAME-v6.6-ubuntu-2404-riscv64-$CI_JOB_ID"
     paths:
       - "deploy/sdcard.img.xz"
       - "deploy/sdcard.bmap"
