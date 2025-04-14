@@ -41,6 +41,7 @@ if [ -f arch/riscv/configs/mpfs_defconfig ] ; then
 	make ARCH=riscv CROSS_COMPILE=${CC} mpfs_defconfig
 
 	./scripts/config --set-str CONFIG_LOCALVERSION "-$(date +%Y%m%d)"
+	./scripts/config --module CONFIG_IKHEADERS
 
 	#6.1 to 6.6 switches
 	./scripts/config --disable CONFIG_FW_LOADER_DEBUG
@@ -174,6 +175,10 @@ else
 	echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig"
 	make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} olddefconfig
 fi
+
+#echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} menuconfig"
+#make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} menuconfig
+#exit 2
 
 echo "make -j${CORES} ARCH=riscv CROSS_COMPILE=${CC} DTC_FLAGS=\"-@\" Image modules dtbs"
 make -j${CORES} ARCH=riscv CROSS_COMPILE="ccache ${CC}" DTC_FLAGS="-@" Image modules dtbs

@@ -31,6 +31,7 @@
 		serial2 = &mmuart2;
 		serial3 = &mmuart3;
 		serial4 = &mmuart4;
+		mmc0 = &mmc;
 	};
 
 	chosen {
@@ -126,13 +127,6 @@
 	gpio-line-names = "", "", "", "", "", "", "",
 			  "", "", "", "", "", "SD_CARD_CS", "USER_BUTTON";
 	status = "okay";
-
-	sd-card-cs-hog {
-		gpio-hog;
-		gpios = <12 12>;
-		output-high;
-		line-name = "SD_CARD_CS";
-	};
 
 	user-button-hog {
 		gpio-hog;
