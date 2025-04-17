@@ -1,8 +1,8 @@
 # Build Depends
 
 ```
-sudo apt update
-sudo apt install bmap-tools dosfstools genimage libelf-dev libyaml-dev mtools
+sudo apt update ;\
+sudo apt-get install -y bison bmap-tools dosfstools genimage flex libelf-dev libyaml-dev mtools
 ```
 
 # Building Microchip Linux tree
