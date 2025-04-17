@@ -2,7 +2,7 @@
 
 ```
 sudo apt update
-sudo apt install bmap-tools dosfstools genimage libyaml-dev mtools
+sudo apt install bmap-tools dosfstools genimage libelf-dev libyaml-dev mtools
 ```
 
 # Building Microchip Linux tree
