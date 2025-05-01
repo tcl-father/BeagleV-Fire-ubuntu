@@ -1,9 +1,5 @@
 before_script:
   - export PATH=/usr/lib/ccache:$PATH
-  - echo "Acquire::http::Proxy \"http://192.168.1.10:3142\";" > /etc/apt/apt.conf.d/00aptproxy
-  - apt-get update
-  - apt-get dist-upgrade -yq
-  - apt-get install -yq bc bison bmap-tools cpio debhelper dosfstools flex genimage kmod libelf-dev libssl-dev libyaml-dev lz4 mtools
   - git config --global user.email "$GITLAB_USER_EMAIL"
   - git config --global user.name "$GITLAB_USER_NAME"
   - touch .gitlab-runner
