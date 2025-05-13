@@ -14,7 +14,7 @@ UBOOT_REPO="https://openbeagle.org/beaglev-fire/beaglev-fire-u-boot.git"
 #UBOOT_REPO="git@openbeagle.org:beaglev-fire/beaglev-fire-u-boot.git"
 
 DT_BRANCH="v6.6.x-Beagle"
-DT_REPO="https://openbeagle.org/beagleboard/BeagleBoard-DeviceTrees.git"
+DT_REPO="https://github.com/beagleboard/BeagleBoard-DeviceTrees.git"
 #DT_REPO="git@openbeagle.org:beagleboard/BeagleBoard-DeviceTrees.git"
 
 LINUX_BRANCH="linux4microchip+fpga-2025.03"
