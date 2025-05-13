@@ -10,7 +10,7 @@ HSS_REPO="https://github.com/polarfire-soc/hart-software-services.git"
 #UBOOT_BRANCH="linux4microchip+fpga-2023.02"
 #UBOOT_REPO="https://github.com/polarfire-soc/u-boot.git"
 UBOOT_BRANCH="v2023.02-BeagleV-Fire"
-UBOOT_REPO="https://openbeagle.org/beaglev-fire/beaglev-fire-u-boot.git"
+UBOOT_REPO="https://github.com/beagleboard/beaglev-fire-u-boot.git"
 #UBOOT_REPO="git@openbeagle.org:beaglev-fire/beaglev-fire-u-boot.git"
 
 DT_BRANCH="v6.6.x-Beagle"
