@@ -4,9 +4,11 @@ https://gitlab.com/RobertCNelson/beaglev-fire-ubuntu/-/artifacts
 
 # Mirrors:
 
-https://github.com/beagleboard/BeagleV-Fire-ubuntu
-(ci on commits) https://openbeagle.org/beaglev-fire/BeagleV-Fire-ubuntu
-(ci daily builds) https://gitlab.com/RobertCNelson/beaglev-fire-ubuntu
+Main Mirror: https://github.com/beagleboard/BeagleV-Fire-ubuntu
+
+Builds on every commit: https://openbeagle.org/beaglev-fire/BeagleV-Fire-ubuntu
+
+Dialy CI Builds: https://gitlab.com/RobertCNelson/beaglev-fire-ubuntu
 
 # Build Depends
 
