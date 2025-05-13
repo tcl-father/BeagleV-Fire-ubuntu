@@ -8,7 +8,7 @@ Main Mirror: https://github.com/beagleboard/BeagleV-Fire-ubuntu
 
 Builds on every commit: https://openbeagle.org/beaglev-fire/BeagleV-Fire-ubuntu
 
-Dialy CI Builds: https://gitlab.com/RobertCNelson/beaglev-fire-ubuntu
+Daily CI Builds: https://gitlab.com/RobertCNelson/beaglev-fire-ubuntu
 
 # Build Depends
 
