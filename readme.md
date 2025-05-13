@@ -1,3 +1,13 @@
+# Weekly BUILDS for Debian 13 (trixie) and Ubuntu 24.04 (noble)
+
+https://gitlab.com/RobertCNelson/beaglev-fire-ubuntu/-/artifacts
+
+# Mirrors:
+
+https://github.com/beagleboard/BeagleV-Fire-ubuntu
+(ci on commits) https://openbeagle.org/beaglev-fire/BeagleV-Fire-ubuntu
+(ci daily builds) https://gitlab.com/RobertCNelson/beaglev-fire-ubuntu
+
 # Build Depends
 
 ```
